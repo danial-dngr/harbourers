@@ -229,47 +229,93 @@
       .replaceAll('"','&quot;')
       .replaceAll("'",'&#039;');
 
+    const cssSafe = (value, fallback='') => String(value ?? fallback).replace(/[<>;]/g,'');
+
+    const styleVarsForSection = (section) => {
+      const vars = [];
+      const set = (name, value) => { if (value !== undefined && value !== null && value !== '') vars.push(`${name}:${cssSafe(value)}`); };
+      set('--cms-width', section.width || '100%');
+      set('--cms-max-width', section.maxWidth || 'none');
+      set('--cms-mt', `${Number(section.marginTop || 0)}px`);
+      set('--cms-mr', `${Number(section.marginRight || 0)}px`);
+      set('--cms-mb', `${Number(section.marginBottom ?? 12)}px`);
+      set('--cms-ml', `${Number(section.marginLeft || 0)}px`);
+      set('--cms-x', `${Number(section.offsetX || 0)}px`);
+      set('--cms-y', `${Number(section.offsetY || 0)}px`);
+      set('--cms-left', section.left ?? '0%');
+      set('--cms-top', typeof section.top === 'number' ? `${section.top}px` : (section.top || '0px'));
+      set('--cms-rotate', `${Number(section.rotate || 0)}deg`);
+      set('--cms-z', Number(section.zIndex ?? 1));
+      set('--cms-opacity', Number(section.opacity ?? 1));
+      set('--cms-fit', section.fit || 'contain');
+      set('--cms-position', section.objectPosition || '50% 50%');
+      set('--cms-font-size', `${Number(section.fontSize || 11)}px`);
+      set('--cms-leading', Number(section.leading || 1.4));
+      set('--cms-tracking', `${Number(section.tracking ?? .3)}px`);
+      set('--cms-text-align', section.textAlign || 'left');
+      set('--cms-transform', section.case || 'uppercase');
+      set('--cms-columns', Number(section.columns || 1));
+      set('--cms-column-gap', `${Number(section.columnGap || 16)}px`);
+      set('--cms-overlap', `${Number(section.overlap || -30)}px`);
+      set('--cms-marquee-speed', `${Number(section.marqueeSpeed || 12)}s`);
+      set('--cms-mobile-width', section.mobileWidth || '100%');
+      return vars.join(';');
+    };
+
+    const classesForSection = (section) => {
+      const c = ['cms-block'];
+      const mode = section.layoutMode || 'flow';
+      c.push(mode === 'free' ? 'cms-free' : 'cms-flow');
+      if (section.fullBleed) c.push('cms-fullbleed');
+      if (section.sticky) c.push('cms-sticky');
+      if (section.allowOverlap) c.push('cms-overlap');
+      if (section.hidden) c.push('cms-hidden');
+      c.push('cms-opacity');
+      return c.join(' ');
+    };
+
     const blockToLegacyHTML = (section) => {
       if (!section || !section.type) return '';
+      if (section.type === 'legacy-html') return section.html || '';
 
-      if (section.type === 'legacy-html') {
-        return section.html || '';
-      }
+      const cls = classesForSection(section);
+      const style = styleVarsForSection(section);
+      const styleAttr = style ? ` style="${style}"` : '';
 
       if (section.type === 'text') {
         const wrap = section.wrap || 'pretty';
-        return `<span class="cms-block cms-text wrap-${wrap}">${escapeCMSHTML(section.text || '')}</span>`;
+        const vertical = section.vertical ? ' vertical' : '';
+        if (section.marquee) {
+          return `<span class="${cls} cms-text cms-marquee wrap-${wrap}${vertical}"${styleAttr}><span>${escapeCMSHTML(section.text || '')}</span></span>`;
+        }
+        return `<span class="${cls} cms-text wrap-${wrap}${vertical}"${styleAttr}>${escapeCMSHTML(section.text || '')}</span>`;
       }
 
       if (section.type === 'spacer') {
-        return `<span class="cms-block" style="height:${Number(section.height || 40)}px"></span>`;
+        return `<span class="${cls}" style="${style};height:${Number(section.height || 40)}px"></span>`;
       }
 
       if (section.type === 'embed') {
-        return `<span class="cms-block cms-embed">${section.html || ''}</span>`;
+        return `<span class="${cls} cms-embed"${styleAttr}>${section.html || ''}</span>`;
       }
 
-      const floatClass =
-        section.float === 'left' ? ' float-left' :
-        section.float === 'right' ? ' float-right' : '';
+      const floatClass = section.float === 'left' ? ' float-left' : section.float === 'right' ? ' float-right' : '';
       const shapeClass = section.shape ? ` shape-${section.shape}` : '';
-      const widthStyle = section.width ? ` style="width:${escapeCMSHTML(section.width)}"` : '';
 
       if (section.type === 'image' || section.type === 'svg') {
         if (section.type === 'svg' && section.code) {
-          return `<span class="cms-block cms-inline-svg${floatClass}${shapeClass}"${widthStyle}>${section.code}</span>`;
+          return `<span class="${cls} cms-inline-svg${floatClass}${shapeClass}"${styleAttr}>${section.code}</span>`;
         }
-        return `<img class="cms-block cms-media${floatClass}${shapeClass}" src="${escapeCMSHTML(section.src || '')}" alt="${escapeCMSHTML(section.alt || '')}"${widthStyle}>`;
+        return `<img class="${cls} cms-media cms-media-object${floatClass}${shapeClass}" src="${escapeCMSHTML(section.src || '')}" alt="${escapeCMSHTML(section.alt || '')}"${styleAttr}>`;
       }
 
       if (section.type === 'video') {
-        return `<video class="cms-block cms-media" src="${escapeCMSHTML(section.src || '')}" controls loop muted playsinline autoplay${widthStyle}></video>`;
+        return `<video class="${cls} cms-media cms-media-object" src="${escapeCMSHTML(section.src || '')}" controls loop muted playsinline ${section.autoplay === false ? '' : 'autoplay'}${styleAttr}></video>`;
       }
 
       if (section.type === 'lottie') {
-        return `<lottie-player class="cms-block cms-lottie${floatClass}${shapeClass}" src="${escapeCMSHTML(section.src || '')}" background="transparent" speed="${Number(section.speed || 1)}" loop autoplay${widthStyle}></lottie-player>`;
+        return `<lottie-player class="${cls} cms-lottie${floatClass}${shapeClass}" src="${escapeCMSHTML(section.src || '')}" background="transparent" speed="${Number(section.speed || 1)}" ${section.loop === false ? '' : 'loop'} ${section.autoplay === false ? '' : 'autoplay'}${styleAttr}></lottie-player>`;
       }
-
       return '';
     };
 

@@ -1,25 +1,4 @@
-<!doctype html>
-<html lang="en">
-<head>
-<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-<title>HARBOURERS CMS</title><link rel="stylesheet" href="cms.css">
-</head>
-<body>
-<header>
-  <strong>HARBOURERS CMS</strong>
-  <div class="actions">
-    <button id="openBtn">OPEN projects.json</button>
-    <button id="exportBtn">EXPORT projects.json</button>
-    <input id="fileInput" type="file" accept=".json" hidden>
-  </div>
-</header>
-<div class="layout">
-<aside>
-  <button id="newProject">+ NEW PROJECT</button>
-  <div class="help">PROJECT ORDER</div>
-  <div id="projects"></div>
-</aside>
-<main><div id="editor">Open <code>content/projects.json</code>.</div></main>
-</div>
-<script src="cms.js"></script>
-</body></html>
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>HARBOURERS CMS PLAYGROUND</title><link rel="stylesheet" href="cms.css"><script src="https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js"></script></head><body>
+<header><strong>HARBOURERS CMS / PLAYGROUND</strong><div><button id="openBtn">OPEN projects.json</button><button id="exportBtn">EXPORT projects.json</button><input id="fileInput" type="file" accept=".json" hidden></div></header>
+<div class="shell"><aside><button id="newProject">+ NEW PROJECT</button><p class="hint">PROJECT ORDER</p><div id="projects"></div></aside><main><section id="editor"></section><section class="previewPane"><div class="previewHead"><strong>LIVE PROJECT PREVIEW</strong><button id="desktopBtn" class="active">DESKTOP</button><button id="mobileBtn">MOBILE</button></div><div id="previewViewport"><div id="projectPreview"></div></div></section></main></div>
+<script src="cms.js"></script></body></html>

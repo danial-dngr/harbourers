@@ -1,44 +1,25 @@
-# HARBOURERS V3 EXACT
+# HARBOURERS V4 PLAYGROUND
 
-This version changes strategy: the original HARBOURER interaction engine is preserved.
+Built directly on the working V3 EXACT base. The outer Harbourer interaction engine is unchanged.
 
-The project preview DOM structure remains exactly:
-- `.preview`
-- `.close-button`
-- `.preview-title`
-- `.preview-image-wrapper`
-- `.preview-blurb`
+## New CMS controls
+- live desktop/mobile project preview
+- Flow or Free layout per block
+- width and mobile width
+- X/Y offsets
+- free-position left/top
+- rotation and z-index
+- top/bottom spacing and overlap
+- full bleed
+- sticky blocks
+- duplicate / up / down / delete
+- text size, leading, tracking, alignment, columns and case
+- vertical text
+- marquee text
+- normal / pretty / balance wrapping
+- images, video, SVG, Lottie, embeds and spacers
+- media opacity, fit and text-flow shapes
 
-The original JS remains responsible for:
-- native free-mode resize (`resize: both`)
-- free dragging
-- Swiss grid layout
-- grid dragging
-- grid resize handle
-- grid/free saved positions
-- mobile stacking
-- close-all
-- drawing/contact including fill, undo, redo, caption, PNG save and email
+The working project windows, free drag/resize, Swiss grid drag/resize, saved positions, mobile stack and COLLAB drawing/contact code are not replaced.
 
-The CMS only supplies project data.
-
-## Update the GitHub repo
-
-Replace the repo contents with this folder.
-
-GitHub Pages settings do not need to change.
-
-## CMS
-
-Open:
-`https://<username>.github.io/harbourers/cms/`
-
-Load:
-`content/projects.json`
-
-Edit projects/blocks, export `projects.json`, then replace:
-`content/projects.json`
-
-## Why this version is safer
-
-The CMS compiles its blocks into the original `image` and `blurb` structure at runtime. The window/grid/drawing code therefore does not have to know a CMS exists.
+Use the CMS at `/cms/`, load `content/projects.json`, edit, then export and replace that single file.
