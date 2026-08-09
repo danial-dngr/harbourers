@@ -1,36 +1,44 @@
-# HARBOURERS V2.1
+# HARBOURERS V3 EXACT
 
-This version preserves the supplied original HARBOURER interaction engine rather than recreating it.
+This version changes strategy: the original HARBOURER interaction engine is preserved.
 
-Preserved from the original source:
-- free-mode draggable preview windows
-- Swiss grid mode
-- grid cell movement
+The project preview DOM structure remains exactly:
+- `.preview`
+- `.close-button`
+- `.preview-title`
+- `.preview-image-wrapper`
+- `.preview-blurb`
+
+The original JS remains responsible for:
+- native free-mode resize (`resize: both`)
+- free dragging
+- Swiss grid layout
+- grid dragging
 - grid resize handle
-- remembered free positions
-- remembered grid size/position
-- grid/free switching
-- mobile stacked preview behaviour
-- close-all and active project state
-- contact/drawing system
-- original styling
+- grid/free saved positions
+- mobile stacking
+- close-all
+- drawing/contact including fill, undo, redo, caption, PNG save and email
 
-Changed:
-- hard-coded project menu is generated from `content/projects.json`
-- hard-coded project data is moved to `content/projects.json`
-- project content supports ordered sections
-- CMS edits the same JSON used by the site
-- image / video / SVG / Lottie / text / embed / spacer blocks
-- section ↑ ↓ ordering
-- text-wrap and shape-based media wrapping
+The CMS only supplies project data.
 
-## Updating your GitHub test repo
-Replace the files in your `harbourers` repo with the contents of this folder.
+## Update the GitHub repo
 
-The live site reads:
+Replace the repo contents with this folder.
+
+GitHub Pages settings do not need to change.
+
+## CMS
+
+Open:
+`https://<username>.github.io/harbourers/cms/`
+
+Load:
 `content/projects.json`
 
-CMS:
-`/cms/`
+Edit projects/blocks, export `projects.json`, then replace:
+`content/projects.json`
 
-When the CMS exports `projects.json`, replace `content/projects.json` with it.
+## Why this version is safer
+
+The CMS compiles its blocks into the original `image` and `blurb` structure at runtime. The window/grid/drawing code therefore does not have to know a CMS exists.

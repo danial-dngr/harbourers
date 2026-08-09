@@ -1308,66 +1308,50 @@
 
 
 
-/* === HARBOURERS V2.1 MODULAR PROJECT CONTENT === */
-.project-sections {
-  width: 100%;
-  display: block;
-}
-.project-section {
-  display: block;
-  width: 100%;
-  max-width: 100%;
-  margin: 0 0 14px 0;
-}
-.project-section:last-child { margin-bottom: 0; }
+/* === CMS CONTENT ADDITIONS ONLY — original HARBOURER CSS above is untouched === */
+.preview-blurb .cms-block { display:block; width:100%; max-width:100%; margin:0 0 12px 0; }
+.preview-blurb .cms-block:last-child { margin-bottom:0; }
+.preview-blurb .cms-text { white-space:pre-wrap; }
+.preview-blurb .cms-text.wrap-normal { text-wrap:wrap; }
+.preview-blurb .cms-text.wrap-pretty { text-wrap:pretty; }
+.preview-blurb .cms-text.wrap-balance { text-wrap:balance; }
 
-.project-section img,
-.project-section video {
-  display: block;
-  width: 100%;
-  max-width: 100%;
-  height: auto;
+.preview-blurb .cms-media {
+  display:block;
+  width:100%;
+  max-width:100%;
+  height:auto;
+  float:none;
+  margin:0 0 12px 0;
 }
+.preview-blurb .cms-media.float-left {
+  width:48%;
+  float:left;
+  margin:0 12px 8px 0;
+}
+.preview-blurb .cms-media.float-right {
+  width:48%;
+  float:right;
+  margin:0 0 8px 12px;
+}
+.preview-blurb .cms-media.shape-circle { shape-outside:circle(50%); border-radius:50%; }
+.preview-blurb .cms-media.shape-ellipse { shape-outside:ellipse(50% 45%); }
+.preview-blurb .cms-media.shape-box { shape-outside:margin-box; }
 
-.project-text {
-  color: var(--text-secondary);
-  font-size: 11px;
-  line-height: 1.4;
-  text-transform: uppercase;
-  letter-spacing: 0.3px;
-  overflow-wrap: break-word;
+.preview-blurb .cms-lottie {
+  display:block;
+  width:100%;
+  min-height:180px;
+  margin:0 0 12px 0;
 }
-
-.project-text.wrap-normal { text-wrap: wrap; }
-.project-text.wrap-pretty { text-wrap: pretty; }
-.project-text.wrap-balance { text-wrap: balance; }
-
-.project-media-wrap-left,
-.project-media-wrap-right {
-  width: 48% !important;
+.preview-blurb .cms-lottie.float-left {
+  width:48%;
+  float:left;
+  margin:0 12px 8px 0;
 }
-.project-media-wrap-left {
-  float: left;
-  margin: 0 14px 10px 0 !important;
+.preview-blurb .cms-lottie.float-right {
+  width:48%;
+  float:right;
+  margin:0 0 8px 12px;
 }
-.project-media-wrap-right {
-  float: right;
-  margin: 0 0 10px 14px !important;
-}
-.project-shape-circle {
-  shape-outside: circle(50%);
-  border-radius: 50%;
-}
-.project-shape-ellipse {
-  shape-outside: ellipse(50% 45%);
-}
-.project-shape-box {
-  shape-outside: margin-box;
-}
-.project-section-clear {
-  clear: both;
-}
-.project-lottie {
-  min-height: 180px;
-  width: 100%;
-}
+.preview-blurb .cms-clear { clear:both; display:block; height:0; margin:0; padding:0; }

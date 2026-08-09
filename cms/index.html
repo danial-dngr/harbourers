@@ -1,29 +1,25 @@
 <!doctype html>
 <html lang="en">
 <head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width,initial-scale=1">
-<title>HARBOURERS CMS</title>
-<link rel="stylesheet" href="cms.css">
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>HARBOURERS CMS</title><link rel="stylesheet" href="cms.css">
 </head>
 <body>
 <header>
   <strong>HARBOURERS CMS</strong>
-  <div>
+  <div class="actions">
     <button id="openBtn">OPEN projects.json</button>
     <button id="exportBtn">EXPORT projects.json</button>
     <input id="fileInput" type="file" accept=".json" hidden>
   </div>
 </header>
 <div class="layout">
-  <aside>
-    <button id="newProject">+ NEW PROJECT</button>
-    <div id="projectList"></div>
-  </aside>
-  <main>
-    <div id="editor">Open <code>content/projects.json</code>.</div>
-  </main>
+<aside>
+  <button id="newProject">+ NEW PROJECT</button>
+  <div class="help">PROJECT ORDER</div>
+  <div id="projects"></div>
+</aside>
+<main><div id="editor">Open <code>content/projects.json</code>.</div></main>
 </div>
 <script src="cms.js"></script>
-</body>
-</html>
+</body></html>

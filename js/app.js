@@ -218,107 +218,100 @@
       element.addEventListener('touchend', stop); element.addEventListener('touchcancel', stop);
     };
 
-    // Project content now comes from content/projects.json
+    // === CMS CONTENT LOADER ===
+    // The original HARBOURER preview/grid/drawing engines below are unchanged.
     let projectData = {};
 
-    const getPrimaryMediaSource = (data) => {
-      const section = (data?.sections || []).find((s) =>
-        ['image', 'svg', 'video', 'lottie'].includes(s.type)
-      );
-      return section?.src || data?.image || '';
-    };
+    const escapeCMSHTML = (value='') => String(value)
+      .replaceAll('&','&amp;')
+      .replaceAll('<','&lt;')
+      .replaceAll('>','&gt;')
+      .replaceAll('"','&quot;')
+      .replaceAll("'",'&#039;');
 
-    const applyProjectMediaWrap = (el, section) => {
-      if (!section || !section.float || section.float === 'none') return;
-      el.classList.add(section.float === 'right' ? 'project-media-wrap-right' : 'project-media-wrap-left');
-      el.classList.add(`project-shape-${section.shape || 'box'}`);
-      if (section.shapeMargin) el.style.shapeMargin = `${Number(section.shapeMargin)}px`;
-    };
+    const blockToLegacyHTML = (section) => {
+      if (!section || !section.type) return '';
 
-    const renderProjectSections = (container, data) => {
-      container.innerHTML = '';
+      if (section.type === 'legacy-html') {
+        return section.html || '';
+      }
 
-      (data?.sections || []).forEach((section) => {
-        const wrapper = document.createElement('div');
-        wrapper.className = 'project-section';
+      if (section.type === 'text') {
+        const wrap = section.wrap || 'pretty';
+        return `<span class="cms-block cms-text wrap-${wrap}">${escapeCMSHTML(section.text || '')}</span>`;
+      }
 
-        if (section.type === 'text') {
-          wrapper.classList.add('project-text', `wrap-${section.wrap || 'pretty'}`);
-          wrapper.textContent = section.text || '';
-          container.appendChild(wrapper);
-          return;
-        }
+      if (section.type === 'spacer') {
+        return `<span class="cms-block" style="height:${Number(section.height || 40)}px"></span>`;
+      }
 
-        if (section.type === 'spacer') {
-          wrapper.style.height = `${Number(section.height || 40)}px`;
-          container.appendChild(wrapper);
-          return;
-        }
+      if (section.type === 'embed') {
+        return `<span class="cms-block cms-embed">${section.html || ''}</span>`;
+      }
 
-        if (section.type === 'embed') {
-          wrapper.innerHTML = section.html || '';
-          container.appendChild(wrapper);
-          return;
-        }
+      const floatClass =
+        section.float === 'left' ? ' float-left' :
+        section.float === 'right' ? ' float-right' : '';
+      const shapeClass = section.shape ? ` shape-${section.shape}` : '';
+      const widthStyle = section.width ? ` style="width:${escapeCMSHTML(section.width)}"` : '';
 
-        if (section.type === 'lottie') {
-          const player = document.createElement('lottie-player');
-          player.className = 'project-lottie';
-          player.setAttribute('src', section.src || '');
-          player.setAttribute('background', 'transparent');
-          player.setAttribute('speed', String(section.speed || 1));
-          if (section.loop !== false) player.setAttribute('loop', '');
-          if (section.autoplay !== false) player.setAttribute('autoplay', '');
-          applyProjectMediaWrap(player, section);
-          wrapper.appendChild(player);
-          container.appendChild(wrapper);
-          return;
-        }
-
+      if (section.type === 'image' || section.type === 'svg') {
         if (section.type === 'svg' && section.code) {
-          wrapper.innerHTML = section.code;
-          const svg = wrapper.querySelector('svg');
-          if (svg) {
-            svg.style.width = section.width || '100%';
-            svg.style.height = 'auto';
-            applyProjectMediaWrap(svg, section);
-          }
-          container.appendChild(wrapper);
-          return;
+          return `<span class="cms-block cms-inline-svg${floatClass}${shapeClass}"${widthStyle}>${section.code}</span>`;
         }
+        return `<img class="cms-block cms-media${floatClass}${shapeClass}" src="${escapeCMSHTML(section.src || '')}" alt="${escapeCMSHTML(section.alt || '')}"${widthStyle}>`;
+      }
 
-        const mediaEl = createMediaEl(section.src || '', section.alt || 'Project media');
-        if (section.width) mediaEl.style.width = section.width;
-        applyProjectMediaWrap(mediaEl, section);
-        wrapper.appendChild(mediaEl);
-        container.appendChild(wrapper);
-      });
+      if (section.type === 'video') {
+        return `<video class="cms-block cms-media" src="${escapeCMSHTML(section.src || '')}" controls loop muted playsinline autoplay${widthStyle}></video>`;
+      }
 
-      const clear = document.createElement('div');
-      clear.className = 'project-section-clear';
-      container.appendChild(clear);
+      if (section.type === 'lottie') {
+        return `<lottie-player class="cms-block cms-lottie${floatClass}${shapeClass}" src="${escapeCMSHTML(section.src || '')}" background="transparent" speed="${Number(section.speed || 1)}" loop autoplay${widthStyle}></lottie-player>`;
+      }
+
+      return '';
     };
 
-    const renderProjectMenu = (projects) => {
-      const list = document.getElementById('projectList');
-      if (!list) return;
-      list.innerHTML = '';
+    const compileProjectToLegacyShape = (project) => {
+      const sections = Array.isArray(project.sections) ? project.sections : [];
+      const primaryIndex = sections.findIndex((s) =>
+        s && ['image','svg','video'].includes(s.type) &&
+        (s.role === 'primary' || !s.float || s.float === 'none')
+      );
+
+      const primary = primaryIndex >= 0 ? sections[primaryIndex] : null;
+      const image = primary?.src || '';
+
+      const remaining = sections.filter((_, index) => index !== primaryIndex);
+      const blurb = remaining.map(blockToLegacyHTML).join('') + '<span class="cms-clear"></span>';
+
+      return {
+        ...project,
+        image,
+        blurb: blurb || 'DETAILS COMING SOON.'
+      };
+    };
+
+    const populateProjectMenu = (projects) => {
+      const projectList = document.getElementById('projectList');
+      if (!projectList) return;
+      projectList.innerHTML = '';
 
       projects
         .filter((project) => project.published !== false)
-        .sort((a, b) => (a.order || 0) - (b.order || 0))
+        .sort((a,b) => Number(a.order || 0) - Number(b.order || 0))
         .forEach((project, index) => {
-          const li = document.createElement('li');
-          li.dataset.project = project.name;
-          li.dataset.category = project.category || 'PROJECTS';
-
-          const number = project.number || String(index + 1).padStart(2, '0');
-          li.innerHTML = `<span>${number}</span>${project.menuLabel || project.name}`;
-          list.appendChild(li);
+          const item = document.createElement('li');
+          item.dataset.project = project.name;
+          item.dataset.category = project.category || 'PROJECTS';
+          const number = project.number || String(index + 1).padStart(2,'0');
+          item.innerHTML = `<span>${escapeCMSHTML(number)}</span>${escapeCMSHTML(project.menuLabel || project.name)}`;
+          projectList.appendChild(item);
         });
     };
 
-    const bindProjectClicks = () => {
+    const bindCMSProjectClicks = () => {
       document.querySelectorAll('#projectList li[data-project]').forEach((item) => {
         item.addEventListener('click', () => {
           const project = item.getAttribute('data-project');
@@ -327,25 +320,18 @@
       });
     };
 
-    const loadProjectContent = async () => {
-      const response = await fetch('content/projects.json', { cache: 'no-store' });
-      if (!response.ok) throw new Error(`Could not load projects.json (${response.status})`);
-
+    const loadCMSContent = async () => {
+      const response = await fetch('content/projects.json', {cache:'no-store'});
+      if (!response.ok) throw new Error(`projects.json returned ${response.status}`);
       const payload = await response.json();
       const projects = payload.projects || [];
 
       projectData = Object.fromEntries(
-        projects.map((project) => [
-          project.name,
-          {
-            ...project,
-            image: getPrimaryMediaSource(project)
-          }
-        ])
+        projects.map((project) => [project.name, compileProjectToLegacyShape(project)])
       );
 
-      renderProjectMenu(projects);
-      bindProjectClicks();
+      populateProjectMenu(projects);
+      bindCMSProjectClicks();
       requestAnimationFrame(updateProjectMenuHeading);
     };
 
@@ -734,7 +720,7 @@
         return;
       }
 
-      const size = getInitialFreePreviewSize(getPrimaryMediaSource(data));
+      const size = getInitialFreePreviewSize(data.image);
       const bounds = getViewportBoundsForFreePreview();
 
       const usableHeight = Math.max(260, bounds.maxY - bounds.minY);
@@ -783,15 +769,16 @@
       preview.style.transform = 'translate(-50%, -50%)';
       preview.style.zIndex = `${++zIndex}`;
 
-      // Project title + CMS-controlled ordered sections.
+      // Title above media (as requested)
       preview.innerHTML = `
         <button class="close-button" title="Close"></button>
         <div class="preview-title">${project}</div>
-        <div class="preview-image-wrapper project-sections"></div>
+        <div class="preview-image-wrapper"></div>
+        <p class="preview-blurb">${data.blurb}</p>
       `;
 
       const mediaWrap = preview.querySelector('.preview-image-wrapper');
-      renderProjectSections(mediaWrap, data);
+      mediaWrap.appendChild(createMediaEl(data.image, `${project} Media`));
 
       preview.addEventListener('wheel', (e) => {
         if (!gridMode && !isMobileView()) {
@@ -828,7 +815,7 @@ preview.querySelector('.close-button').addEventListener('click', () => {
           preview.style.transform = 'translate(0,0)';
         } else {
           // Otherwise open where it fits, with randomized sizing reduced to roughly 70%
-          const randomSize = getRandomGridSizeForMedia(getPrimaryMediaSource(data));
+          const randomSize = getRandomGridSizeForMedia(data.image);
 
           colSpan = Math.min(cols, randomSize.colSpan);
           rowSpan = Math.max(minRows, randomSize.rowSpan);
@@ -960,12 +947,12 @@ preview.querySelector('.close-button').addEventListener('click', () => {
     };
 
     initialiseMenuControls();
-    loadProjectContent().catch((error) => {
-      console.error('HARBOURERS content error:', error);
+    loadCMSContent().catch((error) => {
+      console.error('HARBOURERS CMS content failed to load:', error);
       const heading = document.getElementById('projectMenuHeading');
       if (heading) heading.textContent = 'CONTENT ERROR';
     });
-    // Project clicks are bound after projects.json loads.
+    // project clicks are bound after CMS content loads
 
 
     // Refit on resize in grid

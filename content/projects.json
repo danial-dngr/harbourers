@@ -1,5 +1,5 @@
 {
-  "version": "2.1",
+  "version": "3.0",
   "projects": [
     {
       "id": "solaris",
@@ -13,12 +13,12 @@
         {
           "type": "image",
           "src": "https://github.com/danial-dngr/dngrgoods/blob/main/Holiday%20Sauce%20-%20Holding%20Sea%20horse%20.png?raw=true",
-          "alt": "SOLARIS media"
+          "alt": "SOLARIS Media",
+          "role": "primary"
         },
         {
-          "type": "text",
-          "text": "SOLARIS IS AN EXPLORATION INTO MINIMAL SOLAR HOUSING FOR URBAN SPACES.",
-          "wrap": "pretty"
+          "type": "legacy-html",
+          "html": "<img src=\"https://github.com/danial-dngr/dngrgoods/blob/main/Holiday%20Sauce%20-%20Instax%20Photo.png?raw=true\" alt=\"detail\" /> SOLARIS IS AN EXPLORATION INTO MINIMAL SOLAR HOUSING FOR URBAN SPACES."
         }
       ]
     },
@@ -34,12 +34,12 @@
         {
           "type": "image",
           "src": "https://via.placeholder.com/1200x700/000000/FFFFFF?text=GO+MAD",
-          "alt": "GO MAD media"
+          "alt": "GO MAD Media",
+          "role": "primary"
         },
         {
-          "type": "text",
-          "text": "GO MAD IS AN ENERGETIC PROJECT AIMED AT CAPTURING HUMAN CREATIVITY.",
-          "wrap": "pretty"
+          "type": "legacy-html",
+          "html": "GO MAD IS AN ENERGETIC PROJECT AIMED AT CAPTURING HUMAN CREATIVITY."
         }
       ]
     },
@@ -55,12 +55,12 @@
         {
           "type": "image",
           "src": "PROOF _ LSW BUILT - BRAND IDENTITY OPTIONS-2.png",
-          "alt": "LSW media"
+          "alt": "LSW Media",
+          "role": "primary"
         },
         {
-          "type": "text",
-          "text": "LSW ENCAPSULATES THE ESSENCE OF LIVING SIMPLY WITH WATER THEMES.",
-          "wrap": "pretty"
+          "type": "legacy-html",
+          "html": "LSW ENCAPSULATES THE ESSENCE OF LIVING SIMPLY WITH WATER THEMES."
         }
       ]
     },
@@ -76,12 +76,12 @@
         {
           "type": "image",
           "src": "vancesign-front.jpg",
-          "alt": "VANCE LIVING media"
+          "alt": "VANCE LIVING Media",
+          "role": "primary"
         },
         {
-          "type": "text",
-          "text": "WE WILL GUIDE YOU THROUGH THE WHOLE PROCESS AND HELP TRANSFORM YOUR HOME, SHOP OR RENOVATION IDEAS INTO A COHESIVE CONCEPT THAT RESONATES WITH YOUR LIFE, YOUR NEEDS AND WANTS.",
-          "wrap": "pretty"
+          "type": "legacy-html",
+          "html": "WE WILL GUIDE YOU THROUGH THE WHOLE PROCESS AND HELP TRANSFORM YOUR HOME, SHOP OR RENOVATION IDEAS INTO A COHESIVE CONCEPT THAT RESONATES WITH YOUR LIFE, YOUR NEEDS AND WANTS."
         }
       ]
     },
@@ -97,12 +97,12 @@
         {
           "type": "image",
           "src": "https://dngrgoods.com/wp-content/uploads/2023/07/DSC01289-1.png",
-          "alt": "ABOUT DNGR media"
+          "alt": "ABOUT DNGR Media",
+          "role": "primary"
         },
         {
-          "type": "text",
-          "text": "CREATIVE DIRECTION, BRAND IDENTITY, TYPOGRAPHY, LOGO & STRATEGIC DESIGN.",
-          "wrap": "pretty"
+          "type": "legacy-html",
+          "html": "CREATIVE DIRECTION, BRAND IDENTITY, TYPOGRAPHY, LOGO & STRATEGIC DESIGN."
         }
       ]
     },
@@ -118,12 +118,12 @@
         {
           "type": "image",
           "src": "https://github.com/danial-dngr/dngrgoods/blob/main/Screen%20Shot%202022-11-03%20at%205.31.19%20pm.png?raw=true",
-          "alt": "NOCTURNAL INGESTIONS media"
+          "alt": "NOCTURNAL INGESTIONS Media",
+          "role": "primary"
         },
         {
-          "type": "text",
-          "text": "LATE NIGHT RESTAURANT IDENTITY WITH BENDIGO HOTEL, COLLINGWOOD.",
-          "wrap": "pretty"
+          "type": "legacy-html",
+          "html": "LATE NIGHT RESTAURANT IDENTITY WITH BENDIGO HOTEL, COLLINGWOOD."
         }
       ]
     },
@@ -139,12 +139,12 @@
         {
           "type": "image",
           "src": "https://github.com/danial-dngr/dngrgoods/blob/main/MMALE%20MODEL%20WEARING%20SHIRT%20FUll.jpg?raw=true",
-          "alt": "THAIMESE media"
+          "alt": "THAIMESE Media",
+          "role": "primary"
         },
         {
-          "type": "text",
-          "text": "THAIMESE PROJECT DESCRIPTION HERE.",
-          "wrap": "pretty"
+          "type": "legacy-html",
+          "html": "THAIMESE PROJECT DESCRIPTION HERE."
         }
       ]
     },
@@ -160,12 +160,12 @@
         {
           "type": "video",
           "src": "FINDING TIME 3.mp4",
-          "alt": "KINETIC MOTION media"
+          "alt": "KINETIC MOTION Media",
+          "role": "primary"
         },
         {
-          "type": "text",
-          "text": "KINETIC MOTION EXPLORES DYNAMIC MOVEMENT AND VISUAL RHYTHM.",
-          "wrap": "pretty"
+          "type": "legacy-html",
+          "html": "KINETIC MOTION EXPLORES DYNAMIC MOVEMENT AND VISUAL RHYTHM."
         }
       ]
     },
@@ -181,12 +181,12 @@
         {
           "type": "image",
           "src": "GOM PROCESSES.png",
-          "alt": "GOM MAKER media"
+          "alt": "GOM MAKER Media",
+          "role": "primary"
         },
         {
-          "type": "text",
-          "text": "GỐM MAKER IS A MELBOURNE BASED CERAMICS PRACTICE POSITIONED AT THE INTERSECTION OF CONTEMPORARY CRAFT AND CONCEPTUAL ART. THE BRAND IS GROUNDED IN PROCESS, NARRATIVE, AND CULTURAL REFERENCE, DRAWING FROM VIETNAMESE LANGUAGE AND MAKING TRADITIONS TO FRAME A QUIET, NON COMMERCIAL IDENTITY.THE VISUAL IDENTITY IS DELIBERATELY RESTRAINED, UTILISING MINIMAL TYPOGRAPHY, SOFT NEUTRAL TONES, AND GENEROUS NEGATIVE SPACE TO FOREGROUND THE WORK. PHOTOGRAPHY ACTS AS THE PRIMARY COMMUNICATION DEVICE, PRESENTING EACH PIECE WITH A GALLERY LIKE SENSIBILITY. DIGITALLY, THE WEBSITE FUNCTIONS AS AN EXTENSION OF THE PRACTICE RATHER THAN A TRANSACTIONAL PLATFORM. A SLOW, EDITORIAL LAYOUT AND SIMPLIFIED NAVIGATION PRIORITISE VIEWING AND REFLECTION OVER INTERACTION, REINFORCING THE BRAND’S CONTEMPLATIVE TONE.",
-          "wrap": "pretty"
+          "type": "legacy-html",
+          "html": "GỐM MAKER IS A MELBOURNE BASED CERAMICS PRACTICE POSITIONED AT THE INTERSECTION OF CONTEMPORARY CRAFT AND CONCEPTUAL ART. THE BRAND IS GROUNDED IN PROCESS, NARRATIVE, AND CULTURAL REFERENCE, DRAWING FROM VIETNAMESE LANGUAGE AND MAKING TRADITIONS TO FRAME A QUIET, NON COMMERCIAL IDENTITY.THE VISUAL IDENTITY IS DELIBERATELY RESTRAINED, UTILISING MINIMAL TYPOGRAPHY, SOFT NEUTRAL TONES, AND GENEROUS NEGATIVE SPACE TO FOREGROUND THE WORK. PHOTOGRAPHY ACTS AS THE PRIMARY COMMUNICATION DEVICE, PRESENTING EACH PIECE WITH A GALLERY LIKE SENSIBILITY. DIGITALLY, THE WEBSITE FUNCTIONS AS AN EXTENSION OF THE PRACTICE RATHER THAN A TRANSACTIONAL PLATFORM. A SLOW, EDITORIAL LAYOUT AND SIMPLIFIED NAVIGATION PRIORITISE VIEWING AND REFLECTION OVER INTERACTION, REINFORCING THE BRAND’S CONTEMPLATIVE TONE."
         }
       ]
     },
@@ -202,12 +202,12 @@
         {
           "type": "image",
           "src": "Holiday Sauce - Logo (1).png",
-          "alt": "HOLIDAY media"
+          "alt": "HOLIDAY Media",
+          "role": "primary"
         },
         {
-          "type": "text",
-          "text": "HOLIDAY IS A CONTEMPORARY SAUCE BRAND DEVELOPED TO REFRAME EVERYDAY CONDIMENTS AS EXPRESSIVE, LIFESTYLE DRIVEN OBJECTS. POSITIONED BETWEEN FOOD AND FASHION, THE BRAND DRAWS ON EDITORIAL IMAGERY, BOLD COLOUR PALETTES, AND PLAYFUL NARRATIVE TO CREATE A DISTINCTIVE AND MEMORABLE IDENTITY. AT THE CORE OF THE PROJECT IS A CONTRAST BETWEEN REFINEMENT AND HUMOUR. A CLASSIC SERIF MONOGRAM AND ELEGANT TYPOGRAPHIC SYSTEM ARE PAIRED WITH UNEXPECTED ILLUSTRATIONS AND SURREAL VISUAL ELEMENTS, SUCH AS THE LOBSTER MOTIF AND STYLISED CHARACTER WORK. THIS JUXTAPOSITION CREATES A BRAND THAT FEELS BOTH PREMIUM AND IRREVERENT.",
-          "wrap": "pretty"
+          "type": "legacy-html",
+          "html": "<img src=\"Holiday Sauce - Logo.png\" alt=\"Nocturnal detail 1\"><img src=\"Holiday Sauce - ON its side.png\">HOLIDAY IS A CONTEMPORARY SAUCE BRAND DEVELOPED TO REFRAME EVERYDAY CONDIMENTS AS EXPRESSIVE, LIFESTYLE DRIVEN OBJECTS. POSITIONED BETWEEN FOOD AND FASHION, THE BRAND DRAWS ON EDITORIAL IMAGERY, BOLD COLOUR PALETTES, AND PLAYFUL NARRATIVE TO CREATE A DISTINCTIVE AND MEMORABLE IDENTITY. AT THE CORE OF THE PROJECT IS A CONTRAST BETWEEN REFINEMENT AND HUMOUR. A CLASSIC SERIF MONOGRAM AND ELEGANT TYPOGRAPHIC SYSTEM ARE PAIRED WITH UNEXPECTED ILLUSTRATIONS AND SURREAL VISUAL ELEMENTS, SUCH AS THE LOBSTER MOTIF AND STYLISED CHARACTER WORK. THIS JUXTAPOSITION CREATES A BRAND THAT FEELS BOTH PREMIUM AND IRREVERENT."
         }
       ]
     },
@@ -223,12 +223,12 @@
         {
           "type": "image",
           "src": "THE TASTY STUFF - 1.png",
-          "alt": "THE TASTY STUFF media"
+          "alt": "THE TASTY STUFF Media",
+          "role": "primary"
         },
         {
-          "type": "text",
-          "text": "PROJECT ELEVEN DESCRIPTION.",
-          "wrap": "pretty"
+          "type": "legacy-html",
+          "html": "PROJECT ELEVEN DESCRIPTION."
         }
       ]
     },
@@ -244,12 +244,12 @@
         {
           "type": "image",
           "src": "PORT FOLIO PIECE PROPSER.png",
-          "alt": "PROSPER media"
+          "alt": "PROSPER Media",
+          "role": "primary"
         },
         {
-          "type": "text",
-          "text": "PROJECT TWELVE DESCRIPTION.",
-          "wrap": "pretty"
+          "type": "legacy-html",
+          "html": "PROJECT TWELVE DESCRIPTION."
         }
       ]
     },
@@ -265,12 +265,12 @@
         {
           "type": "image",
           "src": "FORELONG_LOCKUP.png",
-          "alt": "FORELONG media"
+          "alt": "FORELONG Media",
+          "role": "primary"
         },
         {
-          "type": "text",
-          "text": "FORELONG is a rescue-focused organisation dedicated to the rehabilitation, care, and rehoming of hounds and other vulnerable dogs. The concept is built around the belief that every dog deserves dignity, safety, and the opportunity for a meaningful life beyond neglect, abandonment, or exploitation. From a charitable perspective, FORELONG addresses a significant need within animal welfare. Many hounds, particularly those retired from racing, hunting, or breeding environments, face uncertain futures despite being gentle, intelligent, and highly adaptable companions. By providing rescue services, veterinary care, foster networks, rehabilitation, and adoption pathways, FORELONG creates a bridge between hardship and a stable home. The organisation not only improves the lives of individual animals but also contributes to broader community awareness around responsible ownership and animal welfare. Aesthetically, the FORELONG concept draws strength from the unique character of hounds themselves. Their distinctive silhouettes, elongated forms, and quiet elegance create a visual language that feels refined, timeless, and memorable. The brand balances compassion with sophistication, avoiding overly sentimental charity conventions in favour of a more considered and enduring identity. This approach positions the organisation as both emotionally engaging and highly credible, helping it connect with supporters, adopters, volunteers, and donors alike. The importance of FORELONG lies in its ability to unite purpose and design. It is a charitable initiative with tangible social impact, while also demonstrating how thoughtful branding can elevate awareness, build trust, and create stronger connections between people and the causes they support. Through rescue, advocacy, and community engagement, FORELONG represents a future where vulnerable dogs are given the care, respect, and second chances they deserve.",
-          "wrap": "pretty"
+          "type": "legacy-html",
+          "html": "FORELONG is a rescue-focused organisation dedicated to the rehabilitation, care, and rehoming of hounds and other vulnerable dogs. The concept is built around the belief that every dog deserves dignity, safety, and the opportunity for a meaningful life beyond neglect, abandonment, or exploitation. From a charitable perspective, FORELONG addresses a significant need within animal welfare. Many hounds, particularly those retired from racing, hunting, or breeding environments, face uncertain futures despite being gentle, intelligent, and highly adaptable companions. By providing rescue services, veterinary care, foster networks, rehabilitation, and adoption pathways, FORELONG creates a bridge between hardship and a stable home. The organisation not only improves the lives of individual animals but also contributes to broader community awareness around responsible ownership and animal welfare. Aesthetically, the FORELONG concept draws strength from the unique character of hounds themselves. Their distinctive silhouettes, elongated forms, and quiet elegance create a visual language that feels refined, timeless, and memorable. The brand balances compassion with sophistication, avoiding overly sentimental charity conventions in favour of a more considered and enduring identity. This approach positions the organisation as both emotionally engaging and highly credible, helping it connect with supporters, adopters, volunteers, and donors alike. The importance of FORELONG lies in its ability to unite purpose and design. It is a charitable initiative with tangible social impact, while also demonstrating how thoughtful branding can elevate awareness, build trust, and create stronger connections between people and the causes they support. Through rescue, advocacy, and community engagement, FORELONG represents a future where vulnerable dogs are given the care, respect, and second chances they deserve."
         }
       ]
     },
@@ -286,12 +286,12 @@
         {
           "type": "image",
           "src": "https://via.placeholder.com/1200x700/3a3a3a/FFFFFF?text=PROJECT+FOURTEEN",
-          "alt": "PROJECT FOURTEEN media"
+          "alt": "PROJECT FOURTEEN Media",
+          "role": "primary"
         },
         {
-          "type": "text",
-          "text": "PROJECT FOURTEEN DESCRIPTION.",
-          "wrap": "pretty"
+          "type": "legacy-html",
+          "html": "PROJECT FOURTEEN DESCRIPTION."
         }
       ]
     },
@@ -307,12 +307,12 @@
         {
           "type": "image",
           "src": "https://via.placeholder.com/1200x700/444444/FFFFFF?text=PROJECT+FIFTEEN",
-          "alt": "PROJECT FIFTEEN media"
+          "alt": "PROJECT FIFTEEN Media",
+          "role": "primary"
         },
         {
-          "type": "text",
-          "text": "PROJECT FIFTEEN DESCRIPTION.",
-          "wrap": "pretty"
+          "type": "legacy-html",
+          "html": "PROJECT FIFTEEN DESCRIPTION."
         }
       ]
     },
@@ -328,12 +328,12 @@
         {
           "type": "image",
           "src": "https://via.placeholder.com/1200x700/4a4a4a/FFFFFF?text=PROJECT+SIXTEEN",
-          "alt": "PROJECT SIXTEEN media"
+          "alt": "PROJECT SIXTEEN Media",
+          "role": "primary"
         },
         {
-          "type": "text",
-          "text": "PROJECT SIXTEEN DESCRIPTION.",
-          "wrap": "pretty"
+          "type": "legacy-html",
+          "html": "PROJECT SIXTEEN DESCRIPTION."
         }
       ]
     },
@@ -349,12 +349,12 @@
         {
           "type": "image",
           "src": "https://via.placeholder.com/1200x700/555555/FFFFFF?text=PROJECT+SEVENTEEN",
-          "alt": "PROJECT SEVENTEEN media"
+          "alt": "PROJECT SEVENTEEN Media",
+          "role": "primary"
         },
         {
-          "type": "text",
-          "text": "PROJECT SEVENTEEN DESCRIPTION.",
-          "wrap": "pretty"
+          "type": "legacy-html",
+          "html": "PROJECT SEVENTEEN DESCRIPTION."
         }
       ]
     },
@@ -370,12 +370,12 @@
         {
           "type": "image",
           "src": "https://via.placeholder.com/1200x700/5a5a5a/FFFFFF?text=PROJECT+EIGHTEEN",
-          "alt": "PROJECT EIGHTEEN media"
+          "alt": "PROJECT EIGHTEEN Media",
+          "role": "primary"
         },
         {
-          "type": "text",
-          "text": "PROJECT EIGHTEEN DESCRIPTION.",
-          "wrap": "pretty"
+          "type": "legacy-html",
+          "html": "PROJECT EIGHTEEN DESCRIPTION."
         }
       ]
     },
@@ -391,12 +391,12 @@
         {
           "type": "image",
           "src": "https://via.placeholder.com/1200x700/666666/FFFFFF?text=PROJECT+NINETEEN",
-          "alt": "PROJECT NINETEEN media"
+          "alt": "PROJECT NINETEEN Media",
+          "role": "primary"
         },
         {
-          "type": "text",
-          "text": "PROJECT NINETEEN DESCRIPTION.",
-          "wrap": "pretty"
+          "type": "legacy-html",
+          "html": "PROJECT NINETEEN DESCRIPTION."
         }
       ]
     },
@@ -412,12 +412,12 @@
         {
           "type": "image",
           "src": "https://via.placeholder.com/1200x700/6a6a6a/FFFFFF?text=PROJECT+TWENTY",
-          "alt": "PROJECT TWENTY media"
+          "alt": "PROJECT TWENTY Media",
+          "role": "primary"
         },
         {
-          "type": "text",
-          "text": "PROJECT TWENTY DESCRIPTION.",
-          "wrap": "pretty"
+          "type": "legacy-html",
+          "html": "PROJECT TWENTY DESCRIPTION."
         }
       ]
     },
@@ -433,12 +433,12 @@
         {
           "type": "image",
           "src": "https://via.placeholder.com/1200x700/777777/FFFFFF?text=PROJECT+TWENTY-ONE",
-          "alt": "PROJECT TWENTY-ONE media"
+          "alt": "PROJECT TWENTY-ONE Media",
+          "role": "primary"
         },
         {
-          "type": "text",
-          "text": "PROJECT TWENTY-ONE DESCRIPTION.",
-          "wrap": "pretty"
+          "type": "legacy-html",
+          "html": "PROJECT TWENTY-ONE DESCRIPTION."
         }
       ]
     },
@@ -454,12 +454,12 @@
         {
           "type": "image",
           "src": "https://via.placeholder.com/1200x700/7a7a7a/FFFFFF?text=PROJECT+TWENTY-TWO",
-          "alt": "PROJECT TWENTY-TWO media"
+          "alt": "PROJECT TWENTY-TWO Media",
+          "role": "primary"
         },
         {
-          "type": "text",
-          "text": "PROJECT TWENTY-TWO DESCRIPTION.",
-          "wrap": "pretty"
+          "type": "legacy-html",
+          "html": "PROJECT TWENTY-TWO DESCRIPTION."
         }
       ]
     },
@@ -475,12 +475,12 @@
         {
           "type": "image",
           "src": "https://via.placeholder.com/1200x700/858585/FFFFFF?text=PROJECT+TWENTY-THREE",
-          "alt": "PROJECT TWENTY-THREE media"
+          "alt": "PROJECT TWENTY-THREE Media",
+          "role": "primary"
         },
         {
-          "type": "text",
-          "text": "PROJECT TWENTY-THREE DESCRIPTION.",
-          "wrap": "pretty"
+          "type": "legacy-html",
+          "html": "PROJECT TWENTY-THREE DESCRIPTION."
         }
       ]
     },
@@ -496,12 +496,12 @@
         {
           "type": "image",
           "src": "https://via.placeholder.com/1200x700/909090/FFFFFF?text=PROJECT+TWENTY-FOUR",
-          "alt": "PROJECT TWENTY-FOUR media"
+          "alt": "PROJECT TWENTY-FOUR Media",
+          "role": "primary"
         },
         {
-          "type": "text",
-          "text": "PROJECT TWENTY-FOUR DESCRIPTION.",
-          "wrap": "pretty"
+          "type": "legacy-html",
+          "html": "PROJECT TWENTY-FOUR DESCRIPTION."
         }
       ]
     },
@@ -517,12 +517,12 @@
         {
           "type": "image",
           "src": "https://via.placeholder.com/1200x700/999999/FFFFFF?text=PROJECT+TWENTY-FIVE",
-          "alt": "PROJECT TWENTY-FIVE media"
+          "alt": "PROJECT TWENTY-FIVE Media",
+          "role": "primary"
         },
         {
-          "type": "text",
-          "text": "PROJECT TWENTY-FIVE DESCRIPTION.",
-          "wrap": "pretty"
+          "type": "legacy-html",
+          "html": "PROJECT TWENTY-FIVE DESCRIPTION."
         }
       ]
     }
