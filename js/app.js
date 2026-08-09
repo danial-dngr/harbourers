@@ -1,103 +1,1019 @@
 
-(() => {
-'use strict';
-const openPreviews = {};
-let gridMode=false, zIndex=20, projectData={};
-const $=s=>document.querySelector(s);
-const isMobile=()=>matchMedia('(max-width:800px)').matches;
-const grid=$('#gridContainer'), mobile=$('#mobileStackContainer'), list=$('#projectList');
+    const openPreviews = {};
+    let gridMode = false;
+    let zIndex = 10;
 
-function media(section){
-  const src=section.src||'';
-  let el;
-  if(section.type==='video'){ el=document.createElement('video'); el.src=src; el.controls=true; el.loop=true; el.muted=true; el.playsInline=true; el.autoplay=true; }
-  else if(section.type==='svg'){
-    if((section.code||'').trim().startsWith('<svg')){ const w=document.createElement('div'); w.innerHTML=section.code; return w.firstElementChild||w; }
-    el=document.createElement('img'); el.src=src;
-  } else if(section.type==='lottie'){
-    el=document.createElement('lottie-player'); el.className='lottie-player'; el.setAttribute('src',src); el.setAttribute('background','transparent'); el.setAttribute('speed','1'); el.setAttribute('loop',''); el.setAttribute('autoplay','');
-  } else { el=document.createElement('img'); el.src=src; el.alt=section.alt||''; el.loading='lazy'; el.draggable=false; }
-  if(section.float && section.float!=='none'){ el.classList.add('project-media-float',section.float); if(section.shape) el.classList.add(section.shape); }
-  return el;
-}
-function renderSection(s){
-  const box=document.createElement('div'); box.className='project-section';
-  if(s.type==='text'){ box.classList.add('project-text','wrap-'+(s.wrap||'pretty')); box.innerHTML=(s.text||'').replace(/\n/g,'<br>'); }
-  else if(s.type==='spacer'){ box.classList.add('project-spacer'); box.style.height=(Number(s.height)||40)+'px'; }
-  else if(s.type==='embed'){ const f=document.createElement('iframe'); f.src=s.src||''; f.loading='lazy'; box.appendChild(f); }
-  else box.appendChild(media(s));
-  return box;
-}
-function closePreview(name){
-  const p=openPreviews[name]; if(!p)return; p.remove(); delete openPreviews[name];
-  list.querySelector(`[data-project="${CSS.escape(name)}"]`)?.classList.remove('is-active');
-}
-function makeDraggable(el){
-  let drag=false,sx=0,sy=0,l=0,t=0;
-  el.addEventListener('mousedown',e=>{
-    if(gridMode||isMobile()||e.target.closest('button,img,video,lottie-player,.project-text'))return;
-    drag=true;sx=e.clientX;sy=e.clientY;l=el.offsetLeft;t=el.offsetTop;el.style.zIndex=++zIndex;el.style.cursor='grabbing';
-  });
-  addEventListener('mousemove',e=>{if(!drag)return; el.style.transform='none'; el.style.left=(l+e.clientX-sx)+'px'; el.style.top=(t+e.clientY-sy)+'px';});
-  addEventListener('mouseup',()=>{drag=false;el.style.cursor='default';});
-}
-function openProject(name){
-  if(openPreviews[name]){ openPreviews[name].style.zIndex=++zIndex; return; }
-  const d=projectData[name]; if(!d)return;
-  const p=document.createElement('div'); p.className='preview'; p.dataset.project=name; p.style.zIndex=++zIndex;
-  const close=document.createElement('button'); close.className='close-button'; close.title='Close'; close.onclick=()=>closePreview(name);
-  const title=document.createElement('div'); title.className='preview-title'; title.textContent=name;
-  const sections=document.createElement('div'); sections.className='project-sections';
-  (d.sections||[]).forEach(s=>sections.appendChild(renderSection(s)));
-  p.append(close,title,sections); openPreviews[name]=p;
-  list.querySelector(`[data-project="${CSS.escape(name)}"]`)?.classList.add('is-active');
-  if(isMobile()){ mobile.appendChild(p); }
-  else if(gridMode){ grid.appendChild(p); p.classList.add('in-grid'); p.style.gridColumn='span 4'; p.style.gridRow='span 24'; }
-  else { document.body.appendChild(p); p.style.left=(20+Math.random()*Math.max(20,innerWidth-650))+'px'; p.style.top=(80+Math.random()*Math.max(20,innerHeight*.8-500))+'px'; p.style.transform='none'; }
-  makeDraggable(p);
-}
-function rebuildMode(){
-  Object.values(openPreviews).forEach(p=>{
-    if(isMobile()){p.classList.remove('in-grid');mobile.appendChild(p);}
-    else if(gridMode){p.classList.add('in-grid');grid.appendChild(p);p.style.gridColumn='span 4';p.style.gridRow='span 24';}
-    else{p.classList.remove('in-grid');document.body.appendChild(p);p.style.position='absolute';p.style.width='600px';p.style.height='auto';}
-  });
-}
-function heading(){
-  const h=$('#projectMenuHeading'); if(!h)return;
-  if(list.scrollTop<4){h.textContent='PROJECTS';return;}
-  const top=list.getBoundingClientRect().top; let a=list.querySelector('li');
-  list.querySelectorAll('li').forEach(i=>{if(i.getBoundingClientRect().top<=top+10)a=i;});
-  h.textContent=(a?.dataset.category||'PROJECTS').toUpperCase();
-}
-function setupContact(){
-  const overlay=$('#contactPanel'), toggle=$('#contactToggleBtn'), close=$('#closeContactBtn'), canvas=$('#contactCanvas');
-  if(!overlay||!toggle||!canvas)return;
-  const ctx=canvas.getContext('2d'); let drawing=false,last=null,colour='#111111',tool='pen';
-  const seed=()=>{ctx.fillStyle='#f4f0e5';ctx.fillRect(0,0,canvas.width,canvas.height)}; seed();
-  toggle.onclick=()=>overlay.classList.toggle('active'); close.onclick=()=>overlay.classList.remove('active');
-  document.querySelectorAll('.draw-tool').forEach(b=>b.onclick=()=>{tool=b.dataset.tool;document.querySelectorAll('.draw-tool').forEach(x=>x.classList.toggle('active',x===b));});
-  document.querySelectorAll('.colour-swatch').forEach(b=>b.onclick=()=>colour=b.dataset.colour);
-  const point=e=>{const r=canvas.getBoundingClientRect();return{x:(e.clientX-r.left)/r.width*canvas.width,y:(e.clientY-r.top)/r.height*canvas.height}};
-  canvas.addEventListener('mousedown',e=>{drawing=true;last=point(e)});
-  canvas.addEventListener('mousemove',e=>{if(!drawing)return;const p=point(e);ctx.strokeStyle=tool==='eraser'?'#f4f0e5':colour;ctx.lineWidth=tool==='eraser'?22:5.6;ctx.lineCap='round';ctx.beginPath();ctx.moveTo(last.x,last.y);ctx.lineTo(p.x,p.y);ctx.stroke();last=p});
-  addEventListener('mouseup',()=>drawing=false);
-  $('#clearDrawingBtn')?.addEventListener('click',seed);
-  $('#downloadDrawingBtn')?.addEventListener('click',()=>{const a=document.createElement('a');a.download='harbourer-contact-drawing.png';a.href=canvas.toDataURL();a.click()});
-}
-async function init(){
-  const payload=await HARBOURER_CONTENT.load();
-  payload.projects.filter(p=>p.published!==false).sort((a,b)=>a.order-b.order).forEach((p,i)=>{
-    projectData[p.name]=p; const li=document.createElement('li'); li.dataset.project=p.name; li.dataset.category=p.category||'PROJECTS';
-    li.innerHTML=`<span>${String(i+1).padStart(2,'0')}</span>${p.menuLabel||p.name}`; li.onclick=()=>openProject(p.name); list.appendChild(li);
-  });
-  $('#invertBtn')?.addEventListener('click',()=>document.body.classList.toggle('dark-mode'));
-  $('#gridBtn')?.addEventListener('click',()=>{if(isMobile())return;gridMode=!gridMode;grid.classList.toggle('active',gridMode);rebuildMode()});
-  $('#closeAllBtn')?.addEventListener('click',()=>Object.keys(openPreviews).forEach(closePreview));
-  list.addEventListener('scroll',heading,{passive:true});
-  addEventListener('resize',rebuildMode);
-  $('#copyrightYear') && ($('#copyrightYear').textContent=new Date().getFullYear());
-  setupContact();
-}
-init().catch(err=>{console.error(err); list.innerHTML='<li>CONTENT COULD NOT LOAD. RUN VIA A LOCAL SERVER OR GITHUB PAGES.</li>';});
-})();
+    const safeStorage = (() => {
+      try {
+        const testKey = '__dngr_storage_test__';
+        window.localStorage.setItem(testKey, '1');
+        window.localStorage.removeItem(testKey);
+        return window.localStorage;
+      } catch (e) {
+        const memoryStore = {};
+        return {
+          getItem: (key) => Object.prototype.hasOwnProperty.call(memoryStore, key) ? memoryStore[key] : null,
+          setItem: (key, value) => { memoryStore[key] = String(value); },
+          removeItem: (key) => { delete memoryStore[key]; },
+          clear: () => { Object.keys(memoryStore).forEach((key) => delete memoryStore[key]); }
+        };
+      }
+    })();
+
+
+    const isMobileView = () => window.matchMedia('(max-width: 800px)').matches;
+
+    const STORAGE_KEYS = {
+      free: 'dngrPreviewMemoryV1',
+      grid: 'dngrGridMemoryV1'
+    };
+
+    const readStore = (key) => {
+      try { return JSON.parse(safeStorage.getItem(key) || '{}'); }
+      catch(e) { return {}; }
+    };
+
+    const writeStore = (key, value) => {
+      try { safeStorage.setItem(key, JSON.stringify(value)); }
+      catch(e) {}
+    };
+
+    const saveFreePreviewState = (project, preview) => {
+      if (gridMode || isMobileView()) return;
+      const store = readStore(STORAGE_KEYS.free);
+      store[project] = {
+        top: preview.style.top,
+        left: preview.style.left,
+        width: preview.style.width,
+        height: preview.style.height,
+        transform: preview.style.transform,
+        expanded: false
+      };
+      writeStore(STORAGE_KEYS.free, store);
+    };
+
+    const applyFreePreviewState = (project, preview) => {
+      if (gridMode || isMobileView()) return false;
+      const state = readStore(STORAGE_KEYS.free)[project];
+      if (!state) return false;
+      preview.style.top = state.top || '50%';
+      preview.style.left = state.left || '50%';
+      preview.style.width = state.width || '600px';
+      preview.style.height = state.height || 'auto';
+      preview.style.transform = state.transform || 'none';
+
+      return true;
+    };
+
+    const saveGridPreviewState = (project, preview) => {
+      if (!gridMode || isMobileView()) return;
+      const store = readStore(STORAGE_KEYS.grid);
+      store[project] = {
+        colSpan: preview.dataset.colSpan,
+        rowSpan: preview.dataset.rowSpan,
+        colStart: preview.dataset.colStart,
+        rowStart: preview.dataset.rowStart,
+        expanded: false
+      };
+      writeStore(STORAGE_KEYS.grid, store);
+    };
+
+    const getGridPreviewState = (project) => {
+      return readStore(STORAGE_KEYS.grid)[project] || null;
+    };
+
+
+
+
+    const freeModeSnapshot = {};
+
+    const snapshotFreeModeLayout = () => {
+      if (isMobileView()) return;
+
+      Object.keys(openPreviews).forEach((project) => {
+        const preview = openPreviews[project];
+        if (!preview || preview.classList.contains('in-grid')) return;
+
+        freeModeSnapshot[project] = {
+          position: preview.style.position || 'absolute',
+          top: preview.style.top || `${preview.offsetTop}px`,
+          left: preview.style.left || `${preview.offsetLeft}px`,
+          width: preview.style.width || `${preview.offsetWidth}px`,
+          height: preview.style.height || preview.style.minHeight || 'auto',
+          minHeight: preview.style.minHeight || '',
+          maxHeight: preview.style.maxHeight || '',
+          transform: preview.style.transform || 'none',
+          zIndex: preview.style.zIndex || ''
+        };
+      });
+    };
+
+    const restoreFreeModeLayout = (project, preview) => {
+      if (isMobileView()) return false;
+
+      const state = freeModeSnapshot[project];
+      if (!state) return false;
+
+      preview.style.position = 'absolute';
+      preview.style.top = state.top;
+      preview.style.left = state.left;
+      preview.style.width = state.width;
+      preview.style.height = state.height;
+      preview.style.minHeight = state.minHeight;
+      preview.style.maxHeight = state.maxHeight;
+      preview.style.transform = state.transform || 'none';
+      preview.style.zIndex = state.zIndex || `${++zIndex}`;
+      preview.style.overflowX = 'hidden';
+      preview.style.overflowY = 'auto';
+
+      return true;
+    };
+
+
+    // Theme toggle
+    const invertBtn = document.getElementById('invertBtn');
+    const savedDarkMode = safeStorage.getItem('darkMode') === 'true';
+    if (savedDarkMode) document.body.classList.add('dark-mode');
+    invertBtn.addEventListener('click', () => {
+      document.body.classList.toggle('dark-mode');
+      safeStorage.setItem('darkMode', document.body.classList.contains('dark-mode'));
+    });
+
+    // Grid toggle
+    const gridBtn = document.getElementById('gridBtn');
+    const gridContainer = document.getElementById('gridContainer');
+    const mobileStackContainer = document.getElementById('mobileStackContainer');
+    gridBtn.addEventListener('click', () => {
+      if (isMobileView()) return;
+
+      const enteringGrid = !gridMode;
+      if (enteringGrid) snapshotFreeModeLayout();
+
+      gridMode = enteringGrid;
+      gridContainer.classList.toggle('active', gridMode);
+
+      if (gridMode) reorganizePreviewsInGrid();
+      else resetPreviewsToAbsolute();
+    });
+
+    // Free mode dragging
+    const makeDraggable = (element) => {
+      let isDragging = false, sx, sy, ex, ey;
+      const start = (e) => {
+        if (gridMode || isMobileView()) return;
+
+        const target = e.target;
+        const isInteractive =
+          target.closest('button') ||
+          target.closest('.preview-blurb') ||
+          target.closest('.preview-image-wrapper') ||
+          target.closest('video') ||
+          target.closest('img');
+
+        if (isInteractive) return;
+
+        isDragging = true;
+        sx = e.touches ? e.touches[0].clientX : e.clientX;
+        sy = e.touches ? e.touches[0].clientY : e.clientY;
+        ex = element.offsetLeft;
+        ey = element.offsetTop;
+        element.style.cursor = 'grabbing';
+        element.style.zIndex = `${++zIndex}`;
+      };
+      const move = (e) => {
+        if (!isDragging || gridMode || isMobileView()) return;
+
+        const cx = e.touches ? e.touches[0].clientX : e.clientX;
+        const cy = e.touches ? e.touches[0].clientY : e.clientY;
+
+        const bounds = getViewportBoundsForFreePreview();
+        const rect = element.getBoundingClientRect();
+
+        const width = rect.width || element.offsetWidth || 600;
+        const height = rect.height || element.offsetHeight || 360;
+
+        const maxLeft = Math.max(bounds.minX, bounds.maxX - width);
+        const maxTop = Math.max(bounds.minY, bounds.maxY - height);
+
+        let nextLeft = ex + (cx - sx);
+        let nextTop = ey + (cy - sy);
+
+        nextLeft = Math.max(bounds.minX, Math.min(nextLeft, maxLeft));
+        nextTop = Math.max(bounds.minY, Math.min(nextTop, maxTop));
+
+        element.style.left = `${nextLeft}px`;
+        element.style.top  = `${nextTop}px`;
+        element.style.transform = 'none';
+      };
+      const stop = () => {
+        if (isDragging) constrainFreePreviewToViewport(element);
+        if (isDragging && element.dataset.project) saveFreePreviewState(element.dataset.project, element);
+        isDragging = false;
+        element.style.cursor = gridMode ? 'default' : 'grab';
+      };
+      element.addEventListener('mousedown', start); element.addEventListener('mousemove', move);
+      element.addEventListener('mouseup', stop); element.addEventListener('mouseleave', stop);
+      element.addEventListener('touchstart', start, {passive:false});
+      element.addEventListener('touchmove', move, {passive:false});
+      element.addEventListener('touchend', stop); element.addEventListener('touchcancel', stop);
+    };
+
+    // Project content now comes from content/projects.json
+    let projectData = {};
+
+    const getPrimaryMediaSource = (data) => {
+      const section = (data?.sections || []).find((s) =>
+        ['image', 'svg', 'video', 'lottie'].includes(s.type)
+      );
+      return section?.src || data?.image || '';
+    };
+
+    const applyProjectMediaWrap = (el, section) => {
+      if (!section || !section.float || section.float === 'none') return;
+      el.classList.add(section.float === 'right' ? 'project-media-wrap-right' : 'project-media-wrap-left');
+      el.classList.add(`project-shape-${section.shape || 'box'}`);
+      if (section.shapeMargin) el.style.shapeMargin = `${Number(section.shapeMargin)}px`;
+    };
+
+    const renderProjectSections = (container, data) => {
+      container.innerHTML = '';
+
+      (data?.sections || []).forEach((section) => {
+        const wrapper = document.createElement('div');
+        wrapper.className = 'project-section';
+
+        if (section.type === 'text') {
+          wrapper.classList.add('project-text', `wrap-${section.wrap || 'pretty'}`);
+          wrapper.textContent = section.text || '';
+          container.appendChild(wrapper);
+          return;
+        }
+
+        if (section.type === 'spacer') {
+          wrapper.style.height = `${Number(section.height || 40)}px`;
+          container.appendChild(wrapper);
+          return;
+        }
+
+        if (section.type === 'embed') {
+          wrapper.innerHTML = section.html || '';
+          container.appendChild(wrapper);
+          return;
+        }
+
+        if (section.type === 'lottie') {
+          const player = document.createElement('lottie-player');
+          player.className = 'project-lottie';
+          player.setAttribute('src', section.src || '');
+          player.setAttribute('background', 'transparent');
+          player.setAttribute('speed', String(section.speed || 1));
+          if (section.loop !== false) player.setAttribute('loop', '');
+          if (section.autoplay !== false) player.setAttribute('autoplay', '');
+          applyProjectMediaWrap(player, section);
+          wrapper.appendChild(player);
+          container.appendChild(wrapper);
+          return;
+        }
+
+        if (section.type === 'svg' && section.code) {
+          wrapper.innerHTML = section.code;
+          const svg = wrapper.querySelector('svg');
+          if (svg) {
+            svg.style.width = section.width || '100%';
+            svg.style.height = 'auto';
+            applyProjectMediaWrap(svg, section);
+          }
+          container.appendChild(wrapper);
+          return;
+        }
+
+        const mediaEl = createMediaEl(section.src || '', section.alt || 'Project media');
+        if (section.width) mediaEl.style.width = section.width;
+        applyProjectMediaWrap(mediaEl, section);
+        wrapper.appendChild(mediaEl);
+        container.appendChild(wrapper);
+      });
+
+      const clear = document.createElement('div');
+      clear.className = 'project-section-clear';
+      container.appendChild(clear);
+    };
+
+    const renderProjectMenu = (projects) => {
+      const list = document.getElementById('projectList');
+      if (!list) return;
+      list.innerHTML = '';
+
+      projects
+        .filter((project) => project.published !== false)
+        .sort((a, b) => (a.order || 0) - (b.order || 0))
+        .forEach((project, index) => {
+          const li = document.createElement('li');
+          li.dataset.project = project.name;
+          li.dataset.category = project.category || 'PROJECTS';
+
+          const number = project.number || String(index + 1).padStart(2, '0');
+          li.innerHTML = `<span>${number}</span>${project.menuLabel || project.name}`;
+          list.appendChild(li);
+        });
+    };
+
+    const bindProjectClicks = () => {
+      document.querySelectorAll('#projectList li[data-project]').forEach((item) => {
+        item.addEventListener('click', () => {
+          const project = item.getAttribute('data-project');
+          createPreviewContainer(project);
+        });
+      });
+    };
+
+    const loadProjectContent = async () => {
+      const response = await fetch('content/projects.json', { cache: 'no-store' });
+      if (!response.ok) throw new Error(`Could not load projects.json (${response.status})`);
+
+      const payload = await response.json();
+      const projects = payload.projects || [];
+
+      projectData = Object.fromEntries(
+        projects.map((project) => [
+          project.name,
+          {
+            ...project,
+            image: getPrimaryMediaSource(project)
+          }
+        ])
+      );
+
+      renderProjectMenu(projects);
+      bindProjectClicks();
+      requestAnimationFrame(updateProjectMenuHeading);
+    };
+
+
+    /* === Helpers === */
+    const getGridMetrics = () => {
+      const styles = getComputedStyle(gridContainer);
+      const root = getComputedStyle(document.documentElement);
+      const cols = parseInt(root.getPropertyValue('--swiss-columns')) || 12;
+      const gap = parseFloat(styles.gap || styles.columnGap || '15') || 15;
+      const rect = gridContainer.getBoundingClientRect();
+      const colWidth = (rect.width - gap * (cols - 1)) / cols;
+      const rh = parseFloat(root.getPropertyValue('--swiss-row')) || 12;
+      const effCol = colWidth + gap;
+      const effRow = rh + gap;
+      const containerHeight = rect.height;
+      return { cols, gap, colWidth, rh, effCol, effRow, containerHeight };
+    };
+
+    const autoSizeRowSpan = (preview, minRows=1) => {
+      if (!gridMode) return;
+      const { rh, gap } = getGridMetrics();
+      const h = preview.getBoundingClientRect().height;
+      const rows = Math.max(minRows, Math.round((h + gap) / (rh + gap)));
+      preview.dataset.rowSpan = String(rows);
+      preview.style.gridRow = `span ${rows}`;
+    };
+
+    const createMediaEl = (src, alt) => {
+      const isVideo = /\.(mp4|webm|ogg)(\?.*)?$/i.test(src);
+      if (isVideo) {
+        const v = document.createElement('video');
+        v.src = src; v.controls = true; v.loop = true; v.muted = true; v.playsInline = true; v.autoplay = true;
+        v.setAttribute('aria-label', alt || 'Project video'); v.preload = 'metadata';
+        return v;
+      } else {
+        const img = document.createElement('img');
+        img.src = src; img.alt = alt || 'Project image'; img.loading = 'lazy'; img.draggable = false;
+        return img;
+      }
+    };
+
+    const ensureAutoSizeOnMediaLoad = (preview, minRows=1) => {
+      const imgs = preview.querySelectorAll('img');
+      const vids = preview.querySelectorAll('video');
+      const fit = () => autoSizeRowSpan(preview, minRows);
+
+      imgs.forEach(img => img.complete ? fit() : img.addEventListener('load', fit, {once:true}));
+      vids.forEach(v => (v.readyState >= 2) ? fit() : v.addEventListener('loadeddata', fit, {once:true}));
+
+      if (window.ResizeObserver) {
+        if (preview._ro) { try { preview._ro.disconnect(); } catch(e){} }
+        const ro = new ResizeObserver(() => { if (gridMode) autoSizeRowSpan(preview, minRows); });
+        ro.observe(preview);
+        preview._ro = ro;
+      }
+    };
+
+    const approxSpansFromPixels = (pxWidth, pxHeight) => {
+      const { cols, effCol, effRow } = getGridMetrics();
+      const colSpan = Math.min(cols, Math.max(1, Math.round(pxWidth / effCol)));
+      const rowSpan = Math.max(1, Math.round(pxHeight / effRow));
+      return { colSpan, rowSpan };
+    };
+
+    const getRandomGridSizeForMedia = (src) => {
+      const sizes = [
+        { colSpan: 2, rowSpan: 18 },
+        { colSpan: 3, rowSpan: 20 },
+        { colSpan: 3, rowSpan: 23 },
+        { colSpan: 4, rowSpan: 21 },
+        { colSpan: 4, rowSpan: 24 },
+        { colSpan: 5, rowSpan: 26 }
+      ];
+
+      const wideSizes = [
+        { colSpan: 4, rowSpan: 16 },
+        { colSpan: 5, rowSpan: 18 },
+        { colSpan: 5, rowSpan: 20 }
+      ];
+
+      const tallSizes = [
+        { colSpan: 2, rowSpan: 26 },
+        { colSpan: 3, rowSpan: 29 },
+        { colSpan: 3, rowSpan: 32 }
+      ];
+
+      const videoSizes = [
+        { colSpan: 4, rowSpan: 22 },
+        { colSpan: 5, rowSpan: 24 },
+        { colSpan: 5, rowSpan: 26 }
+      ];
+
+      const source = (src || '').toLowerCase();
+      const isVideo = /\.(mp4|webm|ogg)(\?.*)?$/i.test(source);
+
+      const isWide =
+        source.includes('front') ||
+        source.includes('screen') ||
+        source.includes('screenshot') ||
+        source.includes('landscape') ||
+        source.includes('wide') ||
+        source.includes('holding') ||
+        source.includes('built');
+
+      const isTall =
+        source.includes('portrait') ||
+        source.includes('poster') ||
+        source.includes('vertical');
+
+      if (isVideo) return videoSizes[Math.floor(Math.random() * videoSizes.length)];
+      if (isWide) return wideSizes[Math.floor(Math.random() * wideSizes.length)];
+      if (isTall) return tallSizes[Math.floor(Math.random() * tallSizes.length)];
+
+      return sizes[Math.floor(Math.random() * sizes.length)];
+    };
+
+    const addGridResizer = (preview) => {
+      if (preview.querySelector('.grid-resize')) return;
+      const handle = document.createElement('div');
+      handle.className = 'grid-resize';
+      preview.appendChild(handle);
+
+      const onDown = (e) => {
+        if (!gridMode) return;
+        e.preventDefault();
+        const start = e.touches ? e.touches[0] : e;
+        const startX = start.clientX, startY = start.clientY;
+        const { cols, effCol, effRow } = getGridMetrics();
+        let startColSpan = parseInt(preview.dataset.colSpan || '1', 10);
+        let startRowSpan = parseInt(preview.dataset.rowSpan || '1', 10);
+
+        const onMove = (ev) => {
+          if (!gridMode) return;
+          const p = ev.touches ? ev.touches[0] : ev;
+          const dx = p.clientX - startX, dy = p.clientY - startY;
+
+          let newCol = Math.round((startColSpan * effCol + dx) / effCol);
+          let newRow = Math.round((startRowSpan * effRow + dy) / effRow);
+
+          const minRows = Math.max(1, Math.ceil(350 / effRow)); /* enforce 350px min */
+          newCol = Math.max(1, Math.min(cols, newCol));
+          newRow = Math.max(minRows, newRow);
+
+          preview.dataset.colSpan = String(newCol);
+          preview.dataset.rowSpan = String(newRow);
+          preview.style.gridColumn = `span ${newCol}`;
+          preview.style.gridRow = `span ${newRow}`;
+        };
+
+        const onUp = () => {
+          window.removeEventListener('mousemove', onMove);
+          window.removeEventListener('mouseup', onUp);
+          window.removeEventListener('touchmove', onMove);
+          window.removeEventListener('touchend', onUp);
+          window.removeEventListener('touchcancel', onUp);
+          const { effRow } = getGridMetrics();
+          autoSizeRowSpan(preview, Math.max(1, Math.ceil(350/effRow)));
+          if (preview.dataset.project) saveGridPreviewState(preview.dataset.project, preview);
+        };
+
+        window.addEventListener('mousemove', onMove);
+        window.addEventListener('mouseup', onUp);
+        window.addEventListener('touchmove', onMove, {passive:false});
+        window.addEventListener('touchend', onUp);
+        window.addEventListener('touchcancel', onUp);
+      };
+
+      handle.addEventListener('mousedown', onDown);
+      handle.addEventListener('touchstart', onDown, {passive:false});
+    };
+
+    const makeGridMovable = (preview) => {
+      const onDown = (e) => {
+        if (!gridMode) return;
+        if (e.target && e.target.classList.contains('grid-resize')) return;
+        e.preventDefault(); e.stopPropagation();
+
+        const start = e.touches ? e.touches[0] : e;
+        const { cols, effCol, effRow } = getGridMetrics();
+        const rect = gridContainer.getBoundingClientRect();
+        const colSpan = parseInt(preview.dataset.colSpan || '1', 10);
+        const rowSpan = parseInt(preview.dataset.rowSpan || '1', 10);
+        preview.classList.add('dragging');
+
+        const onMove = (ev) => {
+          if (!gridMode) return;
+          const p = ev.touches ? ev.touches[0] : ev;
+          const x = p.clientX - rect.left;
+          const y = p.clientY - rect.top;
+          let colStart = Math.floor(x / effCol) + 1;
+          let rowStart = Math.floor(y / effRow) + 1;
+          colStart = Math.max(1, Math.min(cols - colSpan + 1, colStart));
+          rowStart = Math.max(1, rowStart);
+          preview.dataset.colStart = String(colStart);
+          preview.dataset.rowStart = String(rowStart);
+          preview.style.gridColumn = `${colStart} / span ${colSpan}`;
+          preview.style.gridRow = `${rowStart} / span ${rowSpan}`;
+        };
+
+        const onUp = () => {
+          window.removeEventListener('mousemove', onMove);
+          window.removeEventListener('mouseup', onUp);
+          window.removeEventListener('touchmove', onMove);
+          window.removeEventListener('touchend', onUp);
+          window.removeEventListener('touchcancel', onUp);
+          preview.classList.remove('dragging');
+          const { effRow } = getGridMetrics();
+          autoSizeRowSpan(preview, Math.max(1, Math.ceil(350/effRow)));
+          if (preview.dataset.project) saveGridPreviewState(preview.dataset.project, preview);
+        };
+
+        window.addEventListener('mousemove', onMove);
+        window.addEventListener('mouseup', onUp);
+        window.addEventListener('touchmove', onMove, {passive:false});
+        window.addEventListener('touchend', onUp);
+        window.addEventListener('touchcancel', onUp);
+      };
+
+      preview.addEventListener('mousedown', onDown);
+      preview.addEventListener('touchstart', onDown, {passive:false});
+    };
+
+    const reorganizePreviewsInGrid = () => {
+      gridContainer.innerHTML = '';
+      const keys = Object.keys(openPreviews);
+      const count = keys.length;
+      const { cols, effRow, containerHeight } = getGridMetrics();
+      const minRows = Math.max(1, Math.ceil(350 / effRow)); /* 350px min */
+
+      keys.forEach((project) => {
+        const preview = openPreviews[project];
+        gridContainer.appendChild(preview);
+
+        preview.classList.add('in-grid');
+        preview.style.position = 'relative';
+        preview.style.transform = 'none';
+        preview.style.top = 'auto';
+        preview.style.left = 'auto';
+        preview.style.width = '100%';
+        preview.style.height = 'auto';
+
+        let colSpan, rowSpan;
+        if (count === 1) {
+          colSpan = cols;
+          rowSpan = Math.max(minRows, Math.ceil(containerHeight / effRow));
+        } else {
+          const media = preview.querySelector('img, video');
+          const src = media ? media.getAttribute('src') : '';
+          const randomSize = getRandomGridSizeForMedia(src);
+
+          colSpan = Math.min(cols, randomSize.colSpan);
+          rowSpan = Math.max(minRows, randomSize.rowSpan);
+        }
+
+        const savedGridState = getGridPreviewState(project);
+        if (savedGridState) {
+          colSpan = parseInt(savedGridState.colSpan || colSpan, 10);
+          rowSpan = parseInt(savedGridState.rowSpan || rowSpan, 10);
+        }
+
+        preview.dataset.colSpan = String(colSpan);
+        preview.dataset.rowSpan = String(rowSpan);
+
+        if (savedGridState && savedGridState.colStart && savedGridState.rowStart) {
+          preview.dataset.colStart = savedGridState.colStart;
+          preview.dataset.rowStart = savedGridState.rowStart;
+          preview.style.gridColumn = `${savedGridState.colStart} / span ${colSpan}`;
+          preview.style.gridRow = `${savedGridState.rowStart} / span ${rowSpan}`;
+        } else {
+          preview.style.gridColumn = `span ${colSpan}`;
+          preview.style.gridRow = `span ${rowSpan}`;
+        }
+
+        addGridResizer(preview);
+        makeGridMovable(preview);
+
+        requestAnimationFrame(() => {
+          ensureAutoSizeOnMediaLoad(preview, minRows);
+          autoSizeRowSpan(preview, minRows);
+        });
+      });
+    };
+
+    const resetPreviewsToAbsolute = () => {
+      Object.keys(openPreviews).forEach((project) => {
+        const preview = openPreviews[project];
+        if (preview._ro) { try { preview._ro.disconnect(); } catch(e){} delete preview._ro; }
+        const h = preview.querySelector('.grid-resize');
+        if (h) h.remove();
+        preview.classList.remove('in-grid', 'dragging');
+
+        document.body.appendChild(preview);
+        preview.style.gridColumn = 'auto';
+        preview.style.gridRow = 'auto';
+
+        const restoredSnapshot = restoreFreeModeLayout(project, preview);
+
+        if (!restoredSnapshot) {
+          preview.style.position = 'absolute';
+          preview.style.top = '50%';
+          preview.style.left = '50%';
+          preview.style.transform = 'translate(-50%, -50%)';
+          preview.style.width = '600px';
+          preview.style.height = 'auto';
+        }
+      });
+    };
+
+
+    const getViewportBoundsForFreePreview = () => {
+      const margin = 20;
+      const headerBottom = 80;
+      const footerTop = window.innerHeight * 0.8 - 10;
+
+      return {
+        margin,
+        minX: margin,
+        minY: headerBottom,
+        maxX: Math.max(margin, window.innerWidth - margin),
+        maxY: Math.max(headerBottom + 260, footerTop)
+      };
+    };
+
+    const getInitialFreePreviewSize = (src) => {
+      const source = (src || '').toLowerCase();
+      const isVideo = /\.(mp4|webm|ogg)(\?.*)?$/i.test(source);
+
+      const isWide =
+        source.includes('front') ||
+        source.includes('screen') ||
+        source.includes('screenshot') ||
+        source.includes('landscape') ||
+        source.includes('wide') ||
+        source.includes('holding') ||
+        source.includes('built');
+
+      const isTall =
+        source.includes('portrait') ||
+        source.includes('poster') ||
+        source.includes('vertical');
+
+      const maxWidth = Math.max(260, Math.min(760, window.innerWidth - 40));
+
+      if (isVideo) return { width: Math.min(640, maxWidth), minHeight: 360 };
+      if (isWide) return { width: Math.min(720, maxWidth), minHeight: 340 };
+      if (isTall) return { width: Math.min(460, maxWidth), minHeight: 500 };
+
+      return { width: Math.min(560 + Math.round(Math.random() * 120), maxWidth), minHeight: 360 };
+    };
+
+    const constrainFreePreviewToViewport = (preview) => {
+      if (gridMode || isMobileView()) return;
+
+      const bounds = getViewportBoundsForFreePreview();
+      const rect = preview.getBoundingClientRect();
+
+      let left = preview.offsetLeft;
+      let top = preview.offsetTop;
+
+      const width = rect.width || parseFloat(preview.style.width) || 600;
+      const usableHeight = Math.max(260, bounds.maxY - bounds.minY);
+      const height = Math.min(rect.height || 360, usableHeight);
+
+      preview.style.maxHeight = `${usableHeight}px`;
+      preview.style.overflowY = 'auto';
+      preview.style.overflowX = 'hidden';
+
+      const maxLeft = Math.max(bounds.minX, bounds.maxX - width);
+      const maxTop = Math.max(bounds.minY, bounds.maxY - height);
+
+      left = Math.max(bounds.minX, Math.min(left, maxLeft));
+      top = Math.max(bounds.minY, Math.min(top, maxTop));
+
+      preview.style.left = `${left}px`;
+      preview.style.top = `${top}px`;
+      preview.style.transform = 'none';
+    };
+
+    const placeFreePreviewRandomly = (project, preview, data) => {
+      if (gridMode || isMobileView()) return;
+
+      const remembered = applyFreePreviewState(project, preview);
+      if (remembered) {
+        constrainFreePreviewToViewport(preview);
+        return;
+      }
+
+      const size = getInitialFreePreviewSize(getPrimaryMediaSource(data));
+      const bounds = getViewportBoundsForFreePreview();
+
+      const usableHeight = Math.max(260, bounds.maxY - bounds.minY);
+
+      preview.style.width = `${size.width}px`;
+      preview.style.minHeight = `${Math.min(size.minHeight, usableHeight)}px`;
+      preview.style.maxHeight = `${usableHeight}px`;
+      preview.style.height = 'auto';
+      preview.style.overflowY = 'auto';
+      preview.style.overflowX = 'hidden';
+      preview.style.transform = 'none';
+
+      const approxHeight = Math.min(Math.max(size.minHeight, 320), Math.max(320, bounds.maxY - bounds.minY));
+      const maxLeft = Math.max(bounds.minX, bounds.maxX - size.width);
+      const maxTop = Math.max(bounds.minY, bounds.maxY - approxHeight);
+
+      const left = bounds.minX + Math.round(Math.random() * Math.max(0, maxLeft - bounds.minX));
+      const top = bounds.minY + Math.round(Math.random() * Math.max(0, maxTop - bounds.minY));
+
+      preview.style.left = `${left}px`;
+      preview.style.top = `${top}px`;
+    };
+
+    const createPreviewContainer = (project) => {
+      const data = projectData[project] || { image: '', blurb: 'DETAILS COMING SOON.' };
+
+      if (openPreviews[project]) {
+        const p = openPreviews[project];
+
+        if (isMobileView()) {
+          p.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        } else if (!gridMode) {
+          p.style.top = '50%';
+          p.style.left = '50%';
+          p.style.transform = 'translate(-50%, -50%)';
+        }
+
+        return;
+      }
+
+      const preview = document.createElement('div');
+      preview.className = 'preview';
+      preview.dataset.project = project;
+      preview.style.top = '50%';
+      preview.style.left = '50%';
+      preview.style.transform = 'translate(-50%, -50%)';
+      preview.style.zIndex = `${++zIndex}`;
+
+      // Project title + CMS-controlled ordered sections.
+      preview.innerHTML = `
+        <button class="close-button" title="Close"></button>
+        <div class="preview-title">${project}</div>
+        <div class="preview-image-wrapper project-sections"></div>
+      `;
+
+      const mediaWrap = preview.querySelector('.preview-image-wrapper');
+      renderProjectSections(mediaWrap, data);
+
+      preview.addEventListener('wheel', (e) => {
+        if (!gridMode && !isMobileView()) {
+          e.stopPropagation();
+        }
+      }, { passive: true });
+preview.querySelector('.close-button').addEventListener('click', () => {
+        if (preview._ro) { try { preview._ro.disconnect(); } catch(e){} delete preview._ro; }
+        if (preview._freeRO) { try { preview._freeRO.disconnect(); } catch(e){} delete preview._freeRO; }
+        preview.remove();
+        delete openPreviews[project];
+        const activeItemToRemove = document.querySelector(`#projectList li[data-project="${CSS.escape(project)}"]`);
+        if (activeItemToRemove) activeItemToRemove.classList.remove('is-active');
+        const activeItem = document.querySelector(`#projectList li[data-project="${CSS.escape(project)}"]`);
+        if (activeItem) activeItem.classList.remove('is-active');
+      });
+
+      makeDraggable(preview);
+
+      if (gridMode) {
+        gridContainer.appendChild(preview);
+        preview.classList.add('in-grid');
+
+        // Determine if this will be the only one open
+        const countBefore = Object.keys(openPreviews).length; // number already open (before adding this)
+        const { cols, effRow, containerHeight } = getGridMetrics();
+        const minRows = Math.max(1, Math.ceil(350 / effRow));
+
+        let colSpan, rowSpan;
+        if (countBefore === 0) {
+          // This is the only one → fill the viewable area
+          colSpan = cols;
+          rowSpan = Math.max(minRows, Math.ceil(containerHeight / effRow));
+          preview.style.transform = 'translate(0,0)';
+        } else {
+          // Otherwise open where it fits, with randomized sizing reduced to roughly 70%
+          const randomSize = getRandomGridSizeForMedia(getPrimaryMediaSource(data));
+
+          colSpan = Math.min(cols, randomSize.colSpan);
+          rowSpan = Math.max(minRows, randomSize.rowSpan);
+        }
+
+        const savedGridState = getGridPreviewState(project);
+        if (savedGridState) {
+          colSpan = parseInt(savedGridState.colSpan || colSpan, 10);
+          rowSpan = parseInt(savedGridState.rowSpan || rowSpan, 10);
+        }
+
+        preview.dataset.colSpan = String(colSpan);
+        preview.dataset.rowSpan = String(rowSpan);
+
+        if (savedGridState && savedGridState.colStart && savedGridState.rowStart) {
+          preview.dataset.colStart = savedGridState.colStart;
+          preview.dataset.rowStart = savedGridState.rowStart;
+          preview.style.gridColumn = `${savedGridState.colStart} / span ${colSpan}`;
+          preview.style.gridRow = `${savedGridState.rowStart} / span ${rowSpan}`;
+        } else {
+          preview.style.gridColumn = `span ${colSpan}`;
+          preview.style.gridRow = `span ${rowSpan}`;
+        }
+
+        addGridResizer(preview);
+        makeGridMovable(preview);
+
+        ensureAutoSizeOnMediaLoad(preview, minRows);
+        requestAnimationFrame(() => autoSizeRowSpan(preview, minRows));
+      } else if (isMobileView()) {
+        mobileStackContainer.appendChild(preview);
+        requestAnimationFrame(() => {
+          preview.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        });
+      } else {
+        document.body.appendChild(preview);
+        placeFreePreviewRandomly(project, preview, data);
+
+        if (window.ResizeObserver) {
+          const freeRO = new ResizeObserver(() => {
+            constrainFreePreviewToViewport(preview);
+            saveFreePreviewState(project, preview);
+          });
+          freeRO.observe(preview);
+          preview._freeRO = freeRO;
+        }
+      }
+
+      openPreviews[project] = preview;
+      const activeItem = document.querySelector(`#projectList li[data-project="${CSS.escape(project)}"]`);
+      if (activeItem) activeItem.classList.add('is-active');
+};
+
+
+
+    const closeAllPreviews = () => {
+      Object.keys(openPreviews).forEach((project) => {
+        const preview = openPreviews[project];
+        if (!preview) return;
+
+        if (preview._ro) {
+          try { preview._ro.disconnect(); } catch(e) {}
+          delete preview._ro;
+        }
+
+        if (preview._freeRO) {
+          try { preview._freeRO.disconnect(); } catch(e) {}
+          delete preview._freeRO;
+        }
+
+        preview.remove();
+        delete openPreviews[project];
+      });
+
+      document.querySelectorAll('#projectList li.is-active').forEach((item) => {
+        item.classList.remove('is-active');
+      });
+    };
+
+    const updateProjectMenuHeading = () => {
+      const list = document.getElementById('projectList');
+      const heading = document.getElementById('projectMenuHeading');
+      if (!list || !heading) return;
+
+      if (list.scrollTop < 4) {
+        heading.textContent = 'PROJECTS';
+        return;
+      }
+
+      const items = Array.from(list.querySelectorAll('li[data-project]'));
+      if (!items.length) {
+        heading.textContent = 'PROJECTS';
+        return;
+      }
+
+      const listTop = list.getBoundingClientRect().top;
+      let active = items[0];
+
+      for (const item of items) {
+        const rect = item.getBoundingClientRect();
+        if (rect.top <= listTop + 10) {
+          active = item;
+        } else {
+          break;
+        }
+      }
+
+      heading.textContent = (active.dataset.category || 'PROJECTS').toUpperCase();
+    };
+
+    const initialiseMenuControls = () => {
+      const closeAllBtn = document.getElementById('closeAllBtn');
+      const projectListEl = document.getElementById('projectList');
+
+      if (closeAllBtn) {
+        closeAllBtn.onclick = (e) => {
+          e.preventDefault();
+          e.stopPropagation();
+          closeAllPreviews();
+        };
+      }
+
+      if (projectListEl) {
+        projectListEl.addEventListener('scroll', updateProjectMenuHeading, { passive: true });
+        projectListEl.addEventListener('wheel', () => requestAnimationFrame(updateProjectMenuHeading), { passive: true });
+        projectListEl.addEventListener('touchmove', () => requestAnimationFrame(updateProjectMenuHeading), { passive: true });
+        requestAnimationFrame(updateProjectMenuHeading);
+      }
+    };
+
+    initialiseMenuControls();
+    loadProjectContent().catch((error) => {
+      console.error('HARBOURERS content error:', error);
+      const heading = document.getElementById('projectMenuHeading');
+      if (heading) heading.textContent = 'CONTENT ERROR';
+    });
+    // Project clicks are bound after projects.json loads.
+
+
+    // Refit on resize in grid
+    window.addEventListener('resize', () => {
+      if (!gridMode) {
+        Object.values(openPreviews).forEach(p => constrainFreePreviewToViewport(p));
+        return;
+      }
+
+      const { effRow } = getGridMetrics();
+      const minRows = Math.max(1, Math.ceil(350 / effRow));
+      Object.values(openPreviews).forEach(p => autoSizeRowSpan(p, minRows));
+    });
+
+    // Prevent image ghost dragging
+    document.addEventListener('dragstart', (e) => {
+      if (e.target && e.target.tagName === 'IMG') e.preventDefault();
+    });
+
+
+    /* === Final repair: drawing/contact === */
+    const setupContactPanel = () => {
+      const overlay=document.getElementById('contactPanel'), toggle=document.getElementById('contactToggleBtn'), close=document.getElementById('closeContactBtn'), canvas=document.getElementById('contactCanvas');
+      const status=document.getElementById('contactStatus'), clearBtn=document.getElementById('clearDrawingBtn'), downloadBtn=document.getElementById('downloadDrawingBtn'), sendBtn=document.getElementById('sendContactBtn'), undoBtn=document.getElementById('undoDrawingBtn'), redoBtn=document.getElementById('redoDrawingBtn');
+      const captionInput=document.getElementById('drawingCaption'), captionPreview=document.getElementById('drawingCaptionPreview'), yearEl=document.getElementById('copyrightYear');
+      const tools=document.querySelectorAll('.draw-tool'), swatches=document.querySelectorAll('.colour-swatch');
+      if(yearEl) yearEl.textContent=new Date().getFullYear();
+      if(!overlay||!toggle||!canvas) return;
+      const ctx=canvas.getContext('2d',{willReadFrequently:true}); let drawing=false, tool='pen', colour='#111111', last=null; const undoStack=[], redoStack=[], MAX_HISTORY=30;
+      const setStatus=t=>{if(!status)return;status.textContent=t;clearTimeout(setStatus._timer);setStatus._timer=setTimeout(()=>status.textContent='',2200)};
+      const saveHistory=()=>{try{undoStack.push(ctx.getImageData(0,0,canvas.width,canvas.height));if(undoStack.length>MAX_HISTORY)undoStack.shift();redoStack.length=0}catch(e){}};
+      const seedCanvas=(record=false)=>{if(record)saveHistory();ctx.fillStyle='#f4f0e5';ctx.fillRect(0,0,canvas.width,canvas.height);ctx.fillStyle='rgba(0,0,0,.06)';for(let x=0;x<canvas.width;x+=8){for(let y=0;y<canvas.height;y+=8){ctx.beginPath();ctx.arc(x+Math.random()*1.5,y+Math.random()*1.5,.8,0,Math.PI*2);ctx.fill();}}};
+      const undoDrawing=()=>{if(!undoStack.length)return setStatus('NOTHING TO UNDO');redoStack.push(ctx.getImageData(0,0,canvas.width,canvas.height));ctx.putImageData(undoStack.pop(),0,0);setStatus('UNDO')};
+      const redoDrawing=()=>{if(!redoStack.length)return setStatus('NOTHING TO REDO');undoStack.push(ctx.getImageData(0,0,canvas.width,canvas.height));ctx.putImageData(redoStack.pop(),0,0);setStatus('REDO')};
+      const drawCaptionToCanvas=()=>{const text=(captionInput?.value||'').trim().toUpperCase();if(!text)return;ctx.save();ctx.font='14px monospace';ctx.textAlign='center';ctx.textBaseline='bottom';ctx.fillStyle='rgba(0,0,0,.68)';ctx.fillText(text.slice(0,90),canvas.width/2,canvas.height-18);ctx.restore()};
+      const getPoint=e=>{const r=canvas.getBoundingClientRect(),s=e.touches?e.touches[0]:e;return{x:Math.floor(((s.clientX-r.left)/r.width)*canvas.width),y:Math.floor(((s.clientY-r.top)/r.height)*canvas.height)}};
+      const hexToRgba=h=>{const c=h.replace('#','');return[parseInt(c.slice(0,2),16),parseInt(c.slice(2,4),16),parseInt(c.slice(4,6),16),255]};
+      const floodFill=(x,y,fillHex)=>{if(x<0||y<0||x>=canvas.width||y>=canvas.height)return;saveHistory();const img=ctx.getImageData(0,0,canvas.width,canvas.height),data=img.data,w=canvas.width,h=canvas.height,start=(y*w+x)*4,target=[data[start],data[start+1],data[start+2],data[start+3]],fill=hexToRgba(fillHex),tol=42;const same=i=>(Math.abs(data[i]-target[0])+Math.abs(data[i+1]-target[1])+Math.abs(data[i+2]-target[2])+Math.abs(data[i+3]-target[3]))<=tol;const stack=[[x,y]],seen=new Uint8Array(w*h);while(stack.length){const [px,py]=stack.pop();if(px<0||py<0||px>=w||py>=h)continue;const p=py*w+px;if(seen[p])continue;seen[p]=1;const i=p*4;if(!same(i))continue;data[i]=fill[0];data[i+1]=fill[1];data[i+2]=fill[2];data[i+3]=255;stack.push([px+1,py],[px-1,py],[px,py+1],[px,py-1]);}ctx.putImageData(img,0,0);setStatus('FILLED')};
+      const drawTo=p=>{if(!last){last=p;return}ctx.save();ctx.globalCompositeOperation='source-over';ctx.strokeStyle=tool==='eraser'?'#f4f0e5':colour;ctx.lineWidth=tool==='eraser'?22:5.6;ctx.lineCap='round';ctx.lineJoin='round';ctx.beginPath();ctx.moveTo(last.x,last.y);ctx.lineTo(p.x,p.y);ctx.stroke();if(tool==='pen'){ctx.fillStyle='rgba(0,0,0,.18)';for(let i=0;i<5;i++){ctx.beginPath();ctx.arc(p.x+(Math.random()-.5)*16,p.y+(Math.random()-.5)*16,Math.random()*1.4,0,Math.PI*2);ctx.fill();}}ctx.restore();last=p};
+      const startDrawing=e=>{e.preventDefault();const p=getPoint(e);if(tool==='fill'){floodFill(p.x,p.y,colour);return}saveHistory();drawing=true;last=p};
+      const moveDrawing=e=>{if(!drawing)return;e.preventDefault();drawTo(getPoint(e))}; const stopDrawing=()=>{drawing=false;last=null};
+      toggle.addEventListener('click',()=>{overlay.classList.toggle('active');toggle.classList.toggle('active',overlay.classList.contains('active'))}); close?.addEventListener('click',()=>{overlay.classList.remove('active');toggle.classList.remove('active')});
+      tools.forEach(b=>b.addEventListener('click',()=>{tool=b.dataset.tool;tools.forEach(x=>x.classList.toggle('active',x===b))})); swatches.forEach(b=>b.addEventListener('click',()=>{colour=b.dataset.colour;swatches.forEach(x=>x.classList.toggle('active',x===b))}));
+      captionInput?.addEventListener('input',()=>{if(captionPreview)captionPreview.textContent=captionInput.value}); clearBtn?.addEventListener('click',()=>{seedCanvas(true);setStatus('DRAWING CLEARED')}); undoBtn?.addEventListener('click',undoDrawing); redoBtn?.addEventListener('click',redoDrawing);
+      downloadBtn?.addEventListener('click',()=>{saveHistory();drawCaptionToCanvas();const a=document.createElement('a');a.download='harbourer-contact-drawing.png';a.href=canvas.toDataURL('image/png');a.click();setStatus('DRAWING SAVED')});
+      sendBtn?.addEventListener('click',()=>{saveHistory();drawCaptionToCanvas();const name=document.getElementById('contactName')?.value||'',email=document.getElementById('contactEmail')?.value||'',message=document.getElementById('contactMessage')?.value||'',caption=captionInput?.value||'';const subject=encodeURIComponent(`HARBOURER CONTACT — ${name||'NEW MESSAGE'}`);const body=encodeURIComponent(`Name: ${name}\nEmail: ${email}\n\nMessage:\n${message}\n\nDrawing Caption:\n${caption}\n\nDrawing:\nPlease attach the saved PNG drawing.`);window.location.href=`mailto:danial@dngrgoods.com?subject=${subject}&body=${body}`;setStatus('EMAIL PREPARED')});
+      canvas.addEventListener('mousedown',startDrawing);canvas.addEventListener('mousemove',moveDrawing);window.addEventListener('mouseup',stopDrawing);canvas.addEventListener('touchstart',startDrawing,{passive:false});canvas.addEventListener('touchmove',moveDrawing,{passive:false});canvas.addEventListener('touchend',stopDrawing);canvas.addEventListener('touchcancel',stopDrawing);seedCanvas(false);
+    };
+    setupContactPanel();
+
+  

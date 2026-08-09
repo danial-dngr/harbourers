@@ -1,10 +1,11 @@
 {
-  "version": 2,
+  "version": "2.1",
   "projects": [
     {
       "id": "solaris",
       "name": "SOLARIS",
       "menuLabel": "SOLARIS",
+      "number": "01",
       "category": "WEB",
       "order": 1,
       "published": true,
@@ -25,6 +26,7 @@
       "id": "go-mad",
       "name": "GO MAD",
       "menuLabel": "GO MAD",
+      "number": "02",
       "category": "EXPERIMENTAL",
       "order": 2,
       "published": true,
@@ -45,6 +47,7 @@
       "id": "lsw",
       "name": "LSW",
       "menuLabel": "LSW",
+      "number": "03",
       "category": "BRANDING",
       "order": 3,
       "published": true,
@@ -65,6 +68,7 @@
       "id": "vance-living",
       "name": "VANCE LIVING",
       "menuLabel": "VANCE LIVING",
+      "number": "04",
       "category": "WEB",
       "order": 4,
       "published": true,
@@ -85,6 +89,7 @@
       "id": "about-dngr",
       "name": "ABOUT DNGR",
       "menuLabel": "ABOUT DNGR",
+      "number": "05",
       "category": "WEB",
       "order": 5,
       "published": true,
@@ -105,6 +110,7 @@
       "id": "nocturnal-ingestions",
       "name": "NOCTURNAL INGESTIONS",
       "menuLabel": "NOCTURNAL",
+      "number": "06",
       "category": "BRANDING",
       "order": 6,
       "published": true,
@@ -125,6 +131,7 @@
       "id": "thaimese",
       "name": "THAIMESE",
       "menuLabel": "THAIMESE",
+      "number": "07",
       "category": "BRANDING",
       "order": 7,
       "published": true,
@@ -145,6 +152,7 @@
       "id": "kinetic-motion",
       "name": "KINETIC MOTION",
       "menuLabel": "KINETIC MOTION",
+      "number": "08",
       "category": "MOTION",
       "order": 8,
       "published": true,
@@ -165,6 +173,7 @@
       "id": "gom-maker",
       "name": "GOM MAKER",
       "menuLabel": "GOM MAKER",
+      "number": "09",
       "category": "WEB",
       "order": 9,
       "published": true,
@@ -176,7 +185,7 @@
         },
         {
           "type": "text",
-          "text": "GỐM MAKER IS A MELBOURNE BASED CERAMICS PRACTICE POSITIONED AT THE INTERSECTION OF CONTEMPORARY CRAFT AND CONCEPTUAL ART.",
+          "text": "GỐM MAKER IS A MELBOURNE BASED CERAMICS PRACTICE POSITIONED AT THE INTERSECTION OF CONTEMPORARY CRAFT AND CONCEPTUAL ART. THE BRAND IS GROUNDED IN PROCESS, NARRATIVE, AND CULTURAL REFERENCE, DRAWING FROM VIETNAMESE LANGUAGE AND MAKING TRADITIONS TO FRAME A QUIET, NON COMMERCIAL IDENTITY.THE VISUAL IDENTITY IS DELIBERATELY RESTRAINED, UTILISING MINIMAL TYPOGRAPHY, SOFT NEUTRAL TONES, AND GENEROUS NEGATIVE SPACE TO FOREGROUND THE WORK. PHOTOGRAPHY ACTS AS THE PRIMARY COMMUNICATION DEVICE, PRESENTING EACH PIECE WITH A GALLERY LIKE SENSIBILITY. DIGITALLY, THE WEBSITE FUNCTIONS AS AN EXTENSION OF THE PRACTICE RATHER THAN A TRANSACTIONAL PLATFORM. A SLOW, EDITORIAL LAYOUT AND SIMPLIFIED NAVIGATION PRIORITISE VIEWING AND REFLECTION OVER INTERACTION, REINFORCING THE BRAND’S CONTEMPLATIVE TONE.",
           "wrap": "pretty"
         }
       ]
@@ -185,6 +194,7 @@
       "id": "holiday",
       "name": "HOLIDAY",
       "menuLabel": "HOLIDAY",
+      "number": "10",
       "category": "PACKAGING",
       "order": 10,
       "published": true,
@@ -196,7 +206,7 @@
         },
         {
           "type": "text",
-          "text": "HOLIDAY IS A CONTEMPORARY SAUCE BRAND DEVELOPED TO REFRAME EVERYDAY CONDIMENTS AS EXPRESSIVE, LIFESTYLE DRIVEN OBJECTS.",
+          "text": "HOLIDAY IS A CONTEMPORARY SAUCE BRAND DEVELOPED TO REFRAME EVERYDAY CONDIMENTS AS EXPRESSIVE, LIFESTYLE DRIVEN OBJECTS. POSITIONED BETWEEN FOOD AND FASHION, THE BRAND DRAWS ON EDITORIAL IMAGERY, BOLD COLOUR PALETTES, AND PLAYFUL NARRATIVE TO CREATE A DISTINCTIVE AND MEMORABLE IDENTITY. AT THE CORE OF THE PROJECT IS A CONTRAST BETWEEN REFINEMENT AND HUMOUR. A CLASSIC SERIF MONOGRAM AND ELEGANT TYPOGRAPHIC SYSTEM ARE PAIRED WITH UNEXPECTED ILLUSTRATIONS AND SURREAL VISUAL ELEMENTS, SUCH AS THE LOBSTER MOTIF AND STYLISED CHARACTER WORK. THIS JUXTAPOSITION CREATES A BRAND THAT FEELS BOTH PREMIUM AND IRREVERENT.",
           "wrap": "pretty"
         }
       ]
@@ -205,6 +215,7 @@
       "id": "the-tasty-stuff",
       "name": "THE TASTY STUFF",
       "menuLabel": "THE TASTY STUFF",
+      "number": "11",
       "category": "PACKAGING",
       "order": 11,
       "published": true,
@@ -225,6 +236,7 @@
       "id": "prosper",
       "name": "PROSPER",
       "menuLabel": "PROSPER",
+      "number": "12",
       "category": "BRANDING",
       "order": 12,
       "published": true,
@@ -245,6 +257,7 @@
       "id": "forelong",
       "name": "FORELONG",
       "menuLabel": "FORELONG",
+      "number": "13",
       "category": "EXPERIMENTAL",
       "order": 13,
       "published": true,
@@ -256,7 +269,7 @@
         },
         {
           "type": "text",
-          "text": "FORELONG IS A RESCUE-FOCUSED ORGANISATION DEDICATED TO THE REHABILITATION, CARE, AND REHOMING OF HOUNDS AND OTHER VULNERABLE DOGS.",
+          "text": "FORELONG is a rescue-focused organisation dedicated to the rehabilitation, care, and rehoming of hounds and other vulnerable dogs. The concept is built around the belief that every dog deserves dignity, safety, and the opportunity for a meaningful life beyond neglect, abandonment, or exploitation. From a charitable perspective, FORELONG addresses a significant need within animal welfare. Many hounds, particularly those retired from racing, hunting, or breeding environments, face uncertain futures despite being gentle, intelligent, and highly adaptable companions. By providing rescue services, veterinary care, foster networks, rehabilitation, and adoption pathways, FORELONG creates a bridge between hardship and a stable home. The organisation not only improves the lives of individual animals but also contributes to broader community awareness around responsible ownership and animal welfare. Aesthetically, the FORELONG concept draws strength from the unique character of hounds themselves. Their distinctive silhouettes, elongated forms, and quiet elegance create a visual language that feels refined, timeless, and memorable. The brand balances compassion with sophistication, avoiding overly sentimental charity conventions in favour of a more considered and enduring identity. This approach positions the organisation as both emotionally engaging and highly credible, helping it connect with supporters, adopters, volunteers, and donors alike. The importance of FORELONG lies in its ability to unite purpose and design. It is a charitable initiative with tangible social impact, while also demonstrating how thoughtful branding can elevate awareness, build trust, and create stronger connections between people and the causes they support. Through rescue, advocacy, and community engagement, FORELONG represents a future where vulnerable dogs are given the care, respect, and second chances they deserve.",
           "wrap": "pretty"
         }
       ]
@@ -265,13 +278,14 @@
       "id": "project-fourteen",
       "name": "PROJECT FOURTEEN",
       "menuLabel": "PROJECT FOURTEEN",
+      "number": "14",
       "category": "EXPERIMENTAL",
       "order": 14,
       "published": true,
       "sections": [
         {
           "type": "image",
-          "src": "https://via.placeholder.com/1200x700/777777/FFFFFF?text=PROJECT+FOURTEEN",
+          "src": "https://via.placeholder.com/1200x700/3a3a3a/FFFFFF?text=PROJECT+FOURTEEN",
           "alt": "PROJECT FOURTEEN media"
         },
         {
@@ -285,13 +299,14 @@
       "id": "project-fifteen",
       "name": "PROJECT FIFTEEN",
       "menuLabel": "PROJECT FIFTEEN",
+      "number": "15",
       "category": "EXPERIMENTAL",
       "order": 15,
       "published": true,
       "sections": [
         {
           "type": "image",
-          "src": "https://via.placeholder.com/1200x700/777777/FFFFFF?text=PROJECT+FIFTEEN",
+          "src": "https://via.placeholder.com/1200x700/444444/FFFFFF?text=PROJECT+FIFTEEN",
           "alt": "PROJECT FIFTEEN media"
         },
         {
@@ -305,13 +320,14 @@
       "id": "project-sixteen",
       "name": "PROJECT SIXTEEN",
       "menuLabel": "PROJECT SIXTEEN",
+      "number": "16",
       "category": "EXPERIMENTAL",
       "order": 16,
       "published": true,
       "sections": [
         {
           "type": "image",
-          "src": "https://via.placeholder.com/1200x700/777777/FFFFFF?text=PROJECT+SIXTEEN",
+          "src": "https://via.placeholder.com/1200x700/4a4a4a/FFFFFF?text=PROJECT+SIXTEEN",
           "alt": "PROJECT SIXTEEN media"
         },
         {
@@ -325,13 +341,14 @@
       "id": "project-seventeen",
       "name": "PROJECT SEVENTEEN",
       "menuLabel": "PROJECT SEVENTEEN",
+      "number": "17",
       "category": "EXPERIMENTAL",
       "order": 17,
       "published": true,
       "sections": [
         {
           "type": "image",
-          "src": "https://via.placeholder.com/1200x700/777777/FFFFFF?text=PROJECT+SEVENTEEN",
+          "src": "https://via.placeholder.com/1200x700/555555/FFFFFF?text=PROJECT+SEVENTEEN",
           "alt": "PROJECT SEVENTEEN media"
         },
         {
@@ -345,13 +362,14 @@
       "id": "project-eighteen",
       "name": "PROJECT EIGHTEEN",
       "menuLabel": "PROJECT EIGHTEEN",
+      "number": "18",
       "category": "EXPERIMENTAL",
       "order": 18,
       "published": true,
       "sections": [
         {
           "type": "image",
-          "src": "https://via.placeholder.com/1200x700/777777/FFFFFF?text=PROJECT+EIGHTEEN",
+          "src": "https://via.placeholder.com/1200x700/5a5a5a/FFFFFF?text=PROJECT+EIGHTEEN",
           "alt": "PROJECT EIGHTEEN media"
         },
         {
@@ -365,13 +383,14 @@
       "id": "project-nineteen",
       "name": "PROJECT NINETEEN",
       "menuLabel": "PROJECT NINETEEN",
+      "number": "19",
       "category": "EXPERIMENTAL",
       "order": 19,
       "published": true,
       "sections": [
         {
           "type": "image",
-          "src": "https://via.placeholder.com/1200x700/777777/FFFFFF?text=PROJECT+NINETEEN",
+          "src": "https://via.placeholder.com/1200x700/666666/FFFFFF?text=PROJECT+NINETEEN",
           "alt": "PROJECT NINETEEN media"
         },
         {
@@ -385,13 +404,14 @@
       "id": "project-twenty",
       "name": "PROJECT TWENTY",
       "menuLabel": "PROJECT TWENTY",
+      "number": "20",
       "category": "EXPERIMENTAL",
       "order": 20,
       "published": true,
       "sections": [
         {
           "type": "image",
-          "src": "https://via.placeholder.com/1200x700/777777/FFFFFF?text=PROJECT+TWENTY",
+          "src": "https://via.placeholder.com/1200x700/6a6a6a/FFFFFF?text=PROJECT+TWENTY",
           "alt": "PROJECT TWENTY media"
         },
         {
@@ -405,6 +425,7 @@
       "id": "project-twenty-one",
       "name": "PROJECT TWENTY-ONE",
       "menuLabel": "PROJECT TWENTY-ONE",
+      "number": "21",
       "category": "EXPERIMENTAL",
       "order": 21,
       "published": true,
@@ -425,13 +446,14 @@
       "id": "project-twenty-two",
       "name": "PROJECT TWENTY-TWO",
       "menuLabel": "PROJECT TWENTY-TWO",
+      "number": "22",
       "category": "EXPERIMENTAL",
       "order": 22,
       "published": true,
       "sections": [
         {
           "type": "image",
-          "src": "https://via.placeholder.com/1200x700/777777/FFFFFF?text=PROJECT+TWENTY-TWO",
+          "src": "https://via.placeholder.com/1200x700/7a7a7a/FFFFFF?text=PROJECT+TWENTY-TWO",
           "alt": "PROJECT TWENTY-TWO media"
         },
         {
@@ -445,13 +467,14 @@
       "id": "project-twenty-three",
       "name": "PROJECT TWENTY-THREE",
       "menuLabel": "PROJECT TWENTY-THREE",
+      "number": "23",
       "category": "EXPERIMENTAL",
       "order": 23,
       "published": true,
       "sections": [
         {
           "type": "image",
-          "src": "https://via.placeholder.com/1200x700/777777/FFFFFF?text=PROJECT+TWENTY-THREE",
+          "src": "https://via.placeholder.com/1200x700/858585/FFFFFF?text=PROJECT+TWENTY-THREE",
           "alt": "PROJECT TWENTY-THREE media"
         },
         {
@@ -465,13 +488,14 @@
       "id": "project-twenty-four",
       "name": "PROJECT TWENTY-FOUR",
       "menuLabel": "PROJECT TWENTY-FOUR",
+      "number": "24",
       "category": "EXPERIMENTAL",
       "order": 24,
       "published": true,
       "sections": [
         {
           "type": "image",
-          "src": "https://via.placeholder.com/1200x700/777777/FFFFFF?text=PROJECT+TWENTY-FOUR",
+          "src": "https://via.placeholder.com/1200x700/909090/FFFFFF?text=PROJECT+TWENTY-FOUR",
           "alt": "PROJECT TWENTY-FOUR media"
         },
         {
@@ -485,13 +509,14 @@
       "id": "project-twenty-five",
       "name": "PROJECT TWENTY-FIVE",
       "menuLabel": "PROJECT TWENTY-FIVE",
+      "number": "25",
       "category": "EXPERIMENTAL",
       "order": 25,
       "published": true,
       "sections": [
         {
           "type": "image",
-          "src": "https://via.placeholder.com/1200x700/777777/FFFFFF?text=PROJECT+TWENTY-FIVE",
+          "src": "https://via.placeholder.com/1200x700/999999/FFFFFF?text=PROJECT+TWENTY-FIVE",
           "alt": "PROJECT TWENTY-FIVE media"
         },
         {

@@ -1,33 +1,36 @@
-# HARBOURER V2
+# HARBOURERS V2.1
 
-This is a clean, modular rebuild based on the supplied working HARBOURER source.
+This version preserves the supplied original HARBOURER interaction engine rather than recreating it.
 
-## Upload to GitHub
-Upload the entire contents of this folder to a new repository, e.g. `HARBOURER-V2`.
-In GitHub: Settings → Pages → Deploy from a branch → `main` / root.
+Preserved from the original source:
+- free-mode draggable preview windows
+- Swiss grid mode
+- grid cell movement
+- grid resize handle
+- remembered free positions
+- remembered grid size/position
+- grid/free switching
+- mobile stacked preview behaviour
+- close-all and active project state
+- contact/drawing system
+- original styling
 
-## Content workflow
-The live site reads `content/projects.json`.
+Changed:
+- hard-coded project menu is generated from `content/projects.json`
+- hard-coded project data is moved to `content/projects.json`
+- project content supports ordered sections
+- CMS edits the same JSON used by the site
+- image / video / SVG / Lottie / text / embed / spacer blocks
+- section ↑ ↓ ordering
+- text-wrap and shape-based media wrapping
 
-Open `/cms/` through a local server or GitHub Pages.
-1. LOAD JSON and choose `content/projects.json`.
-2. Edit/add projects and sections.
-3. Reorder projects or sections with ↑ ↓.
-4. EXPORT SITE DATA.
-5. Replace `content/projects.json` with the exported file.
+## Updating your GitHub test repo
+Replace the files in your `harbourers` repo with the contents of this folder.
 
-Supported blocks: text, image, video, SVG, Lottie, spacer.
-Text supports CSS `text-wrap`: normal, pretty, balance.
-Media can float left/right with box/circle/ellipse shape wrapping.
+The live site reads:
+`content/projects.json`
 
-## Assets
-Put new files into:
-- assets/images
-- assets/svg
-- assets/video
-- assets/lottie
+CMS:
+`/cms/`
 
-Then use paths such as `assets/images/project.jpg`.
-
-## Important
-The original site is not modified.
+When the CMS exports `projects.json`, replace `content/projects.json` with it.

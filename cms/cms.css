@@ -1,2 +1,20 @@
 
-*{box-sizing:border-box}body{margin:0;font-family:monospace;background:#f2efe5;color:#111}header{position:sticky;top:0;display:flex;justify-content:space-between;gap:10px;padding:12px;border-bottom:1px solid #999;background:#f2efe5;z-index:3}button,input,textarea,select{font:inherit;border:1px solid #999;background:transparent;padding:7px}button{cursor:pointer}main{display:grid;grid-template-columns:280px 1fr;min-height:calc(100vh - 55px)}aside{border-right:1px solid #999;padding:10px}.project{display:flex;justify-content:space-between;gap:6px;border-bottom:1px solid #ccc;padding:8px 0}.project button:first-child{flex:1;text-align:left}.active{background:#111;color:#fff}section{padding:18px;max-width:1000px}.row{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:10px}label{display:grid;gap:4px}textarea{min-height:100px}.block{border:1px solid #999;padding:10px;margin:10px 0}.block-head{display:flex;justify-content:space-between;gap:8px;margin-bottom:8px}.block-controls{display:flex;gap:5px}.full{grid-column:1/-1}@media(max-width:700px){main{grid-template-columns:1fr}aside{border-right:0;border-bottom:1px solid #999}.row{grid-template-columns:1fr}}
+*{box-sizing:border-box}
+body{margin:0;font:13px/1.4 ui-monospace,SFMono-Regular,Menlo,monospace;background:#f3f0e5;color:#111}
+button,input,textarea,select{font:inherit}
+button{cursor:pointer;border:1px solid #111;background:transparent;padding:7px 9px}
+header{display:flex;justify-content:space-between;align-items:center;padding:10px;border-bottom:1px solid #aaa;position:sticky;top:0;background:#f3f0e5;z-index:10}
+.layout{display:grid;grid-template-columns:300px 1fr;min-height:calc(100vh - 48px)}
+aside{border-right:1px solid #aaa;padding:10px}
+main{padding:16px;max-width:1050px}
+.project-row{display:grid;grid-template-columns:1fr auto auto;gap:5px;margin:5px 0}
+.project-row.active button:first-child{background:#111;color:#fff}
+.row{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:10px}
+label{display:grid;gap:4px}
+input,textarea,select{width:100%;border:1px solid #aaa;background:white;padding:8px}
+textarea{min-height:100px;resize:vertical}
+.block{border:1px solid #aaa;margin:10px 0;padding:10px;background:#f8f6ef}
+.block-head{display:flex;justify-content:space-between;align-items:center;margin-bottom:10px}
+.controls{display:flex;gap:5px}
+.addbar{display:flex;gap:5px;flex-wrap:wrap;margin:14px 0}
+@media(max-width:800px){.layout{grid-template-columns:1fr}aside{border-right:0;border-bottom:1px solid #aaa}.row{grid-template-columns:1fr}}
