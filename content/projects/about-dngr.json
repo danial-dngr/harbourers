@@ -1,0 +1,19 @@
+{
+  "id": "about-dngr",
+  "name": "ABOUT DNGR",
+  "menuLabel": "ABOUT DNGR",
+  "category": "WEB",
+  "published": true,
+  "sections": [
+    {
+      "type": "image",
+      "src": "https://dngrgoods.com/wp-content/uploads/2023/07/DSC01289-1.png",
+      "alt": "ABOUT DNGR Media",
+      "role": "primary"
+    },
+    {
+      "type": "legacy-html",
+      "html": "CREATIVE DIRECTION, BRAND IDENTITY, TYPOGRAPHY, LOGO & STRATEGIC DESIGN."
+    }
+  ]
+}

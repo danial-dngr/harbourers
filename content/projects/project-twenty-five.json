@@ -1,0 +1,19 @@
+{
+  "id": "project-twenty-five",
+  "name": "PROJECT TWENTY-FIVE",
+  "menuLabel": "PROJECT TWENTY-FIVE",
+  "category": "EXPERIMENTAL",
+  "published": true,
+  "sections": [
+    {
+      "type": "image",
+      "src": "https://via.placeholder.com/1200x700/999999/FFFFFF?text=PROJECT+TWENTY-FIVE",
+      "alt": "PROJECT TWENTY-FIVE Media",
+      "role": "primary"
+    },
+    {
+      "type": "legacy-html",
+      "html": "PROJECT TWENTY-FIVE DESCRIPTION."
+    }
+  ]
+}

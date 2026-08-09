@@ -1,0 +1,19 @@
+{
+  "id": "vance-living",
+  "name": "VANCE LIVING",
+  "menuLabel": "VANCE LIVING",
+  "category": "WEB",
+  "published": true,
+  "sections": [
+    {
+      "type": "image",
+      "src": "vancesign-front.jpg",
+      "alt": "VANCE LIVING Media",
+      "role": "primary"
+    },
+    {
+      "type": "legacy-html",
+      "html": "WE WILL GUIDE YOU THROUGH THE WHOLE PROCESS AND HELP TRANSFORM YOUR HOME, SHOP OR RENOVATION IDEAS INTO A COHESIVE CONCEPT THAT RESONATES WITH YOUR LIFE, YOUR NEEDS AND WANTS."
+    }
+  ]
+}

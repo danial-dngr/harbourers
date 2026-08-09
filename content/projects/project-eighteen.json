@@ -1,0 +1,19 @@
+{
+  "id": "project-eighteen",
+  "name": "PROJECT EIGHTEEN",
+  "menuLabel": "PROJECT EIGHTEEN",
+  "category": "EXPERIMENTAL",
+  "published": true,
+  "sections": [
+    {
+      "type": "image",
+      "src": "https://via.placeholder.com/1200x700/5a5a5a/FFFFFF?text=PROJECT+EIGHTEEN",
+      "alt": "PROJECT EIGHTEEN Media",
+      "role": "primary"
+    },
+    {
+      "type": "legacy-html",
+      "html": "PROJECT EIGHTEEN DESCRIPTION."
+    }
+  ]
+}

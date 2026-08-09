@@ -1,0 +1,19 @@
+{
+  "id": "prosper",
+  "name": "PROSPER",
+  "menuLabel": "PROSPER",
+  "category": "BRANDING",
+  "published": true,
+  "sections": [
+    {
+      "type": "image",
+      "src": "PORT FOLIO PIECE PROPSER.png",
+      "alt": "PROSPER Media",
+      "role": "primary"
+    },
+    {
+      "type": "legacy-html",
+      "html": "PROJECT TWELVE DESCRIPTION."
+    }
+  ]
+}

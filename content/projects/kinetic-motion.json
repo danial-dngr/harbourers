@@ -1,0 +1,19 @@
+{
+  "id": "kinetic-motion",
+  "name": "KINETIC MOTION",
+  "menuLabel": "KINETIC MOTION",
+  "category": "MOTION",
+  "published": true,
+  "sections": [
+    {
+      "type": "video",
+      "src": "FINDING TIME 3.mp4",
+      "alt": "KINETIC MOTION Media",
+      "role": "primary"
+    },
+    {
+      "type": "legacy-html",
+      "html": "KINETIC MOTION EXPLORES DYNAMIC MOVEMENT AND VISUAL RHYTHM."
+    }
+  ]
+}

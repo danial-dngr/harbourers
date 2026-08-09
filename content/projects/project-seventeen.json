@@ -1,0 +1,19 @@
+{
+  "id": "project-seventeen",
+  "name": "PROJECT SEVENTEEN",
+  "menuLabel": "PROJECT SEVENTEEN",
+  "category": "EXPERIMENTAL",
+  "published": true,
+  "sections": [
+    {
+      "type": "image",
+      "src": "https://via.placeholder.com/1200x700/555555/FFFFFF?text=PROJECT+SEVENTEEN",
+      "alt": "PROJECT SEVENTEEN Media",
+      "role": "primary"
+    },
+    {
+      "type": "legacy-html",
+      "html": "PROJECT SEVENTEEN DESCRIPTION."
+    }
+  ]
+}

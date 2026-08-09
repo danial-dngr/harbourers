@@ -1,0 +1,19 @@
+{
+  "id": "forelong",
+  "name": "FORELONG",
+  "menuLabel": "FORELONG",
+  "category": "EXPERIMENTAL",
+  "published": true,
+  "sections": [
+    {
+      "type": "image",
+      "src": "FORELONG_LOCKUP.png",
+      "alt": "FORELONG Media",
+      "role": "primary"
+    },
+    {
+      "type": "legacy-html",
+      "html": "FORELONG is a rescue-focused organisation dedicated to the rehabilitation, care, and rehoming of hounds and other vulnerable dogs. The concept is built around the belief that every dog deserves dignity, safety, and the opportunity for a meaningful life beyond neglect, abandonment, or exploitation. From a charitable perspective, FORELONG addresses a significant need within animal welfare. Many hounds, particularly those retired from racing, hunting, or breeding environments, face uncertain futures despite being gentle, intelligent, and highly adaptable companions. By providing rescue services, veterinary care, foster networks, rehabilitation, and adoption pathways, FORELONG creates a bridge between hardship and a stable home. The organisation not only improves the lives of individual animals but also contributes to broader community awareness around responsible ownership and animal welfare. Aesthetically, the FORELONG concept draws strength from the unique character of hounds themselves. Their distinctive silhouettes, elongated forms, and quiet elegance create a visual language that feels refined, timeless, and memorable. The brand balances compassion with sophistication, avoiding overly sentimental charity conventions in favour of a more considered and enduring identity. This approach positions the organisation as both emotionally engaging and highly credible, helping it connect with supporters, adopters, volunteers, and donors alike. The importance of FORELONG lies in its ability to unite purpose and design. It is a charitable initiative with tangible social impact, while also demonstrating how thoughtful branding can elevate awareness, build trust, and create stronger connections between people and the causes they support. Through rescue, advocacy, and community engagement, FORELONG represents a future where vulnerable dogs are given the care, respect, and second chances they deserve."
+    }
+  ]
+}

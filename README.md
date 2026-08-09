@@ -1,25 +1,66 @@
-# HARBOURERS V4 PLAYGROUND
+# HARBOURERS V5 — MODULAR PROJECT FILES
 
-Built directly on the working V3 EXACT base. The outer Harbourer interaction engine is unchanged.
+This version keeps the working Harbourer V4/V3 interaction engine, but separates every project into its own JSON file.
 
-## New CMS controls
-- live desktop/mobile project preview
-- Flow or Free layout per block
-- width and mobile width
-- X/Y offsets
-- free-position left/top
-- rotation and z-index
-- top/bottom spacing and overlap
-- full bleed
-- sticky blocks
-- duplicate / up / down / delete
-- text size, leading, tracking, alignment, columns and case
-- vertical text
-- marquee text
-- normal / pretty / balance wrapping
-- images, video, SVG, Lottie, embeds and spacers
-- media opacity, fit and text-flow shapes
+## Structure
 
-The working project windows, free drag/resize, Swiss grid drag/resize, saved positions, mobile stack and COLLAB drawing/contact code are not replaced.
+```text
+content/
+├── projects.json
+└── projects/
+    ├── solaris.json
+    ├── go-mad.json
+    ├── lsw.json
+    └── ...
+```
 
-Use the CMS at `/cms/`, load `content/projects.json`, edit, then export and replace that single file.
+`content/projects.json` is only the ordered index:
+
+```json
+{
+  "version": "5.0",
+  "projects": ["solaris", "go-mad", "lsw"]
+}
+```
+
+## Editing an existing project
+
+Open `/cms/`.
+
+The CMS automatically loads the project index and all project files.
+
+1. Edit a project.
+2. Click `EXPORT CURRENT PROJECT`.
+3. Upload that one JSON file into `content/projects/`, replacing the matching file.
+4. Commit.
+
+That edit does not touch any other project.
+
+## Adding a new project
+
+1. `+ NEW PROJECT`
+2. Design it.
+3. `EXPORT CURRENT PROJECT`
+4. Upload the new project JSON into `content/projects/`
+5. `EXPORT PROJECT INDEX`
+6. Replace `content/projects.json`
+7. Commit both.
+
+## Reordering projects
+
+Use ↑ ↓ in the CMS, then export/replace only `content/projects.json`.
+
+## Removing a project
+
+Use `REMOVE FROM PROJECT INDEX`, then export/replace `content/projects.json`.
+
+Its old individual file can remain in `content/projects/` harmlessly, or you can delete it manually.
+
+## Unchanged engine
+
+The existing project window engine remains in place:
+- free dragging/resizing
+- Swiss grid dragging/resizing
+- saved positions
+- mobile stack
+- COLLAB drawing/contact

@@ -1,0 +1,19 @@
+{
+  "id": "project-sixteen",
+  "name": "PROJECT SIXTEEN",
+  "menuLabel": "PROJECT SIXTEEN",
+  "category": "EXPERIMENTAL",
+  "published": true,
+  "sections": [
+    {
+      "type": "image",
+      "src": "https://via.placeholder.com/1200x700/4a4a4a/FFFFFF?text=PROJECT+SIXTEEN",
+      "alt": "PROJECT SIXTEEN Media",
+      "role": "primary"
+    },
+    {
+      "type": "legacy-html",
+      "html": "PROJECT SIXTEEN DESCRIPTION."
+    }
+  ]
+}

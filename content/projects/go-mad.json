@@ -1,0 +1,19 @@
+{
+  "id": "go-mad",
+  "name": "GO MAD",
+  "menuLabel": "GO MAD",
+  "category": "EXPERIMENTAL",
+  "published": true,
+  "sections": [
+    {
+      "type": "image",
+      "src": "https://via.placeholder.com/1200x700/000000/FFFFFF?text=GO+MAD",
+      "alt": "GO MAD Media",
+      "role": "primary"
+    },
+    {
+      "type": "legacy-html",
+      "html": "GO MAD IS AN ENERGETIC PROJECT AIMED AT CAPTURING HUMAN CREATIVITY."
+    }
+  ]
+}

@@ -1,0 +1,19 @@
+{
+  "id": "thaimese",
+  "name": "THAIMESE",
+  "menuLabel": "THAIMESE",
+  "category": "BRANDING",
+  "published": true,
+  "sections": [
+    {
+      "type": "image",
+      "src": "https://github.com/danial-dngr/dngrgoods/blob/main/MMALE%20MODEL%20WEARING%20SHIRT%20FUll.jpg?raw=true",
+      "alt": "THAIMESE Media",
+      "role": "primary"
+    },
+    {
+      "type": "legacy-html",
+      "html": "THAIMESE PROJECT DESCRIPTION HERE."
+    }
+  ]
+}

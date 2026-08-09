@@ -369,8 +369,31 @@
     const loadCMSContent = async () => {
       const response = await fetch('content/projects.json', {cache:'no-store'});
       if (!response.ok) throw new Error(`projects.json returned ${response.status}`);
-      const payload = await response.json();
-      const projects = payload.projects || [];
+
+      const manifest = await response.json();
+      const slugs = Array.isArray(manifest.projects) ? manifest.projects : [];
+
+      const loaded = await Promise.all(
+        slugs.map(async (slug, index) => {
+          try {
+            const projectResponse = await fetch(`content/projects/${encodeURIComponent(slug)}.json`, {cache:'no-store'});
+            if (!projectResponse.ok) throw new Error(`HTTP ${projectResponse.status}`);
+
+            const project = await projectResponse.json();
+            return {
+              ...project,
+              id: project.id || slug,
+              order: index + 1,
+              number: String(index + 1).padStart(2, '0')
+            };
+          } catch (error) {
+            console.error(`HARBOURERS: could not load project "${slug}"`, error);
+            return null;
+          }
+        })
+      );
+
+      const projects = loaded.filter(Boolean);
 
       projectData = Object.fromEntries(
         projects.map((project) => [project.name, compileProjectToLegacyShape(project)])

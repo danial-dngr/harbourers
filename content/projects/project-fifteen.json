@@ -1,0 +1,19 @@
+{
+  "id": "project-fifteen",
+  "name": "PROJECT FIFTEEN",
+  "menuLabel": "PROJECT FIFTEEN",
+  "category": "EXPERIMENTAL",
+  "published": true,
+  "sections": [
+    {
+      "type": "image",
+      "src": "https://via.placeholder.com/1200x700/444444/FFFFFF?text=PROJECT+FIFTEEN",
+      "alt": "PROJECT FIFTEEN Media",
+      "role": "primary"
+    },
+    {
+      "type": "legacy-html",
+      "html": "PROJECT FIFTEEN DESCRIPTION."
+    }
+  ]
+}

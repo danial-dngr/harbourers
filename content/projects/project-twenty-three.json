@@ -1,0 +1,19 @@
+{
+  "id": "project-twenty-three",
+  "name": "PROJECT TWENTY-THREE",
+  "menuLabel": "PROJECT TWENTY-THREE",
+  "category": "EXPERIMENTAL",
+  "published": true,
+  "sections": [
+    {
+      "type": "image",
+      "src": "https://via.placeholder.com/1200x700/858585/FFFFFF?text=PROJECT+TWENTY-THREE",
+      "alt": "PROJECT TWENTY-THREE Media",
+      "role": "primary"
+    },
+    {
+      "type": "legacy-html",
+      "html": "PROJECT TWENTY-THREE DESCRIPTION."
+    }
+  ]
+}

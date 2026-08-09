@@ -1,0 +1,19 @@
+{
+  "id": "lsw",
+  "name": "LSW",
+  "menuLabel": "LSW",
+  "category": "BRANDING",
+  "published": true,
+  "sections": [
+    {
+      "type": "image",
+      "src": "PROOF _ LSW BUILT - BRAND IDENTITY OPTIONS-2.png",
+      "alt": "LSW Media",
+      "role": "primary"
+    },
+    {
+      "type": "legacy-html",
+      "html": "LSW ENCAPSULATES THE ESSENCE OF LIVING SIMPLY WITH WATER THEMES."
+    }
+  ]
+}

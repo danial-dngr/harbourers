@@ -1,0 +1,19 @@
+{
+  "id": "nocturnal-ingestions",
+  "name": "NOCTURNAL INGESTIONS",
+  "menuLabel": "NOCTURNAL",
+  "category": "BRANDING",
+  "published": true,
+  "sections": [
+    {
+      "type": "image",
+      "src": "https://github.com/danial-dngr/dngrgoods/blob/main/Screen%20Shot%202022-11-03%20at%205.31.19%20pm.png?raw=true",
+      "alt": "NOCTURNAL INGESTIONS Media",
+      "role": "primary"
+    },
+    {
+      "type": "legacy-html",
+      "html": "LATE NIGHT RESTAURANT IDENTITY WITH BENDIGO HOTEL, COLLINGWOOD."
+    }
+  ]
+}

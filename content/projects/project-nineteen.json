@@ -1,0 +1,19 @@
+{
+  "id": "project-nineteen",
+  "name": "PROJECT NINETEEN",
+  "menuLabel": "PROJECT NINETEEN",
+  "category": "EXPERIMENTAL",
+  "published": true,
+  "sections": [
+    {
+      "type": "image",
+      "src": "https://via.placeholder.com/1200x700/666666/FFFFFF?text=PROJECT+NINETEEN",
+      "alt": "PROJECT NINETEEN Media",
+      "role": "primary"
+    },
+    {
+      "type": "legacy-html",
+      "html": "PROJECT NINETEEN DESCRIPTION."
+    }
+  ]
+}

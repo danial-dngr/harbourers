@@ -1,0 +1,19 @@
+{
+  "id": "solaris",
+  "name": "SOLARIS",
+  "menuLabel": "SOLARIS",
+  "category": "WEB",
+  "published": true,
+  "sections": [
+    {
+      "type": "image",
+      "src": "https://github.com/danial-dngr/dngrgoods/blob/main/Holiday%20Sauce%20-%20Holding%20Sea%20horse%20.png?raw=true",
+      "alt": "SOLARIS Media",
+      "role": "primary"
+    },
+    {
+      "type": "legacy-html",
+      "html": "<img src=\"https://github.com/danial-dngr/dngrgoods/blob/main/Holiday%20Sauce%20-%20Instax%20Photo.png?raw=true\" alt=\"detail\" /> SOLARIS IS AN EXPLORATION INTO MINIMAL SOLAR HOUSING FOR URBAN SPACES."
+    }
+  ]
+}

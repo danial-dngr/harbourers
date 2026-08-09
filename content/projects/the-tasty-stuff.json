@@ -1,0 +1,19 @@
+{
+  "id": "the-tasty-stuff",
+  "name": "THE TASTY STUFF",
+  "menuLabel": "THE TASTY STUFF",
+  "category": "PACKAGING",
+  "published": true,
+  "sections": [
+    {
+      "type": "image",
+      "src": "THE TASTY STUFF - 1.png",
+      "alt": "THE TASTY STUFF Media",
+      "role": "primary"
+    },
+    {
+      "type": "legacy-html",
+      "html": "PROJECT ELEVEN DESCRIPTION."
+    }
+  ]
+}
