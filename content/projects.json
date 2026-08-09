@@ -1,0 +1,505 @@
+{
+  "version": 2,
+  "projects": [
+    {
+      "id": "solaris",
+      "name": "SOLARIS",
+      "menuLabel": "SOLARIS",
+      "category": "WEB",
+      "order": 1,
+      "published": true,
+      "sections": [
+        {
+          "type": "image",
+          "src": "https://github.com/danial-dngr/dngrgoods/blob/main/Holiday%20Sauce%20-%20Holding%20Sea%20horse%20.png?raw=true",
+          "alt": "SOLARIS media"
+        },
+        {
+          "type": "text",
+          "text": "SOLARIS IS AN EXPLORATION INTO MINIMAL SOLAR HOUSING FOR URBAN SPACES.",
+          "wrap": "pretty"
+        }
+      ]
+    },
+    {
+      "id": "go-mad",
+      "name": "GO MAD",
+      "menuLabel": "GO MAD",
+      "category": "EXPERIMENTAL",
+      "order": 2,
+      "published": true,
+      "sections": [
+        {
+          "type": "image",
+          "src": "https://via.placeholder.com/1200x700/000000/FFFFFF?text=GO+MAD",
+          "alt": "GO MAD media"
+        },
+        {
+          "type": "text",
+          "text": "GO MAD IS AN ENERGETIC PROJECT AIMED AT CAPTURING HUMAN CREATIVITY.",
+          "wrap": "pretty"
+        }
+      ]
+    },
+    {
+      "id": "lsw",
+      "name": "LSW",
+      "menuLabel": "LSW",
+      "category": "BRANDING",
+      "order": 3,
+      "published": true,
+      "sections": [
+        {
+          "type": "image",
+          "src": "PROOF _ LSW BUILT - BRAND IDENTITY OPTIONS-2.png",
+          "alt": "LSW media"
+        },
+        {
+          "type": "text",
+          "text": "LSW ENCAPSULATES THE ESSENCE OF LIVING SIMPLY WITH WATER THEMES.",
+          "wrap": "pretty"
+        }
+      ]
+    },
+    {
+      "id": "vance-living",
+      "name": "VANCE LIVING",
+      "menuLabel": "VANCE LIVING",
+      "category": "WEB",
+      "order": 4,
+      "published": true,
+      "sections": [
+        {
+          "type": "image",
+          "src": "vancesign-front.jpg",
+          "alt": "VANCE LIVING media"
+        },
+        {
+          "type": "text",
+          "text": "WE WILL GUIDE YOU THROUGH THE WHOLE PROCESS AND HELP TRANSFORM YOUR HOME, SHOP OR RENOVATION IDEAS INTO A COHESIVE CONCEPT THAT RESONATES WITH YOUR LIFE, YOUR NEEDS AND WANTS.",
+          "wrap": "pretty"
+        }
+      ]
+    },
+    {
+      "id": "about-dngr",
+      "name": "ABOUT DNGR",
+      "menuLabel": "ABOUT DNGR",
+      "category": "WEB",
+      "order": 5,
+      "published": true,
+      "sections": [
+        {
+          "type": "image",
+          "src": "https://dngrgoods.com/wp-content/uploads/2023/07/DSC01289-1.png",
+          "alt": "ABOUT DNGR media"
+        },
+        {
+          "type": "text",
+          "text": "CREATIVE DIRECTION, BRAND IDENTITY, TYPOGRAPHY, LOGO & STRATEGIC DESIGN.",
+          "wrap": "pretty"
+        }
+      ]
+    },
+    {
+      "id": "nocturnal-ingestions",
+      "name": "NOCTURNAL INGESTIONS",
+      "menuLabel": "NOCTURNAL",
+      "category": "BRANDING",
+      "order": 6,
+      "published": true,
+      "sections": [
+        {
+          "type": "image",
+          "src": "https://github.com/danial-dngr/dngrgoods/blob/main/Screen%20Shot%202022-11-03%20at%205.31.19%20pm.png?raw=true",
+          "alt": "NOCTURNAL INGESTIONS media"
+        },
+        {
+          "type": "text",
+          "text": "LATE NIGHT RESTAURANT IDENTITY WITH BENDIGO HOTEL, COLLINGWOOD.",
+          "wrap": "pretty"
+        }
+      ]
+    },
+    {
+      "id": "thaimese",
+      "name": "THAIMESE",
+      "menuLabel": "THAIMESE",
+      "category": "BRANDING",
+      "order": 7,
+      "published": true,
+      "sections": [
+        {
+          "type": "image",
+          "src": "https://github.com/danial-dngr/dngrgoods/blob/main/MMALE%20MODEL%20WEARING%20SHIRT%20FUll.jpg?raw=true",
+          "alt": "THAIMESE media"
+        },
+        {
+          "type": "text",
+          "text": "THAIMESE PROJECT DESCRIPTION HERE.",
+          "wrap": "pretty"
+        }
+      ]
+    },
+    {
+      "id": "kinetic-motion",
+      "name": "KINETIC MOTION",
+      "menuLabel": "KINETIC MOTION",
+      "category": "MOTION",
+      "order": 8,
+      "published": true,
+      "sections": [
+        {
+          "type": "video",
+          "src": "FINDING TIME 3.mp4",
+          "alt": "KINETIC MOTION media"
+        },
+        {
+          "type": "text",
+          "text": "KINETIC MOTION EXPLORES DYNAMIC MOVEMENT AND VISUAL RHYTHM.",
+          "wrap": "pretty"
+        }
+      ]
+    },
+    {
+      "id": "gom-maker",
+      "name": "GOM MAKER",
+      "menuLabel": "GOM MAKER",
+      "category": "WEB",
+      "order": 9,
+      "published": true,
+      "sections": [
+        {
+          "type": "image",
+          "src": "GOM PROCESSES.png",
+          "alt": "GOM MAKER media"
+        },
+        {
+          "type": "text",
+          "text": "GỐM MAKER IS A MELBOURNE BASED CERAMICS PRACTICE POSITIONED AT THE INTERSECTION OF CONTEMPORARY CRAFT AND CONCEPTUAL ART.",
+          "wrap": "pretty"
+        }
+      ]
+    },
+    {
+      "id": "holiday",
+      "name": "HOLIDAY",
+      "menuLabel": "HOLIDAY",
+      "category": "PACKAGING",
+      "order": 10,
+      "published": true,
+      "sections": [
+        {
+          "type": "image",
+          "src": "Holiday Sauce - Logo (1).png",
+          "alt": "HOLIDAY media"
+        },
+        {
+          "type": "text",
+          "text": "HOLIDAY IS A CONTEMPORARY SAUCE BRAND DEVELOPED TO REFRAME EVERYDAY CONDIMENTS AS EXPRESSIVE, LIFESTYLE DRIVEN OBJECTS.",
+          "wrap": "pretty"
+        }
+      ]
+    },
+    {
+      "id": "the-tasty-stuff",
+      "name": "THE TASTY STUFF",
+      "menuLabel": "THE TASTY STUFF",
+      "category": "PACKAGING",
+      "order": 11,
+      "published": true,
+      "sections": [
+        {
+          "type": "image",
+          "src": "THE TASTY STUFF - 1.png",
+          "alt": "THE TASTY STUFF media"
+        },
+        {
+          "type": "text",
+          "text": "PROJECT ELEVEN DESCRIPTION.",
+          "wrap": "pretty"
+        }
+      ]
+    },
+    {
+      "id": "prosper",
+      "name": "PROSPER",
+      "menuLabel": "PROSPER",
+      "category": "BRANDING",
+      "order": 12,
+      "published": true,
+      "sections": [
+        {
+          "type": "image",
+          "src": "PORT FOLIO PIECE PROPSER.png",
+          "alt": "PROSPER media"
+        },
+        {
+          "type": "text",
+          "text": "PROJECT TWELVE DESCRIPTION.",
+          "wrap": "pretty"
+        }
+      ]
+    },
+    {
+      "id": "forelong",
+      "name": "FORELONG",
+      "menuLabel": "FORELONG",
+      "category": "EXPERIMENTAL",
+      "order": 13,
+      "published": true,
+      "sections": [
+        {
+          "type": "image",
+          "src": "FORELONG_LOCKUP.png",
+          "alt": "FORELONG media"
+        },
+        {
+          "type": "text",
+          "text": "FORELONG IS A RESCUE-FOCUSED ORGANISATION DEDICATED TO THE REHABILITATION, CARE, AND REHOMING OF HOUNDS AND OTHER VULNERABLE DOGS.",
+          "wrap": "pretty"
+        }
+      ]
+    },
+    {
+      "id": "project-fourteen",
+      "name": "PROJECT FOURTEEN",
+      "menuLabel": "PROJECT FOURTEEN",
+      "category": "EXPERIMENTAL",
+      "order": 14,
+      "published": true,
+      "sections": [
+        {
+          "type": "image",
+          "src": "https://via.placeholder.com/1200x700/777777/FFFFFF?text=PROJECT+FOURTEEN",
+          "alt": "PROJECT FOURTEEN media"
+        },
+        {
+          "type": "text",
+          "text": "PROJECT FOURTEEN DESCRIPTION.",
+          "wrap": "pretty"
+        }
+      ]
+    },
+    {
+      "id": "project-fifteen",
+      "name": "PROJECT FIFTEEN",
+      "menuLabel": "PROJECT FIFTEEN",
+      "category": "EXPERIMENTAL",
+      "order": 15,
+      "published": true,
+      "sections": [
+        {
+          "type": "image",
+          "src": "https://via.placeholder.com/1200x700/777777/FFFFFF?text=PROJECT+FIFTEEN",
+          "alt": "PROJECT FIFTEEN media"
+        },
+        {
+          "type": "text",
+          "text": "PROJECT FIFTEEN DESCRIPTION.",
+          "wrap": "pretty"
+        }
+      ]
+    },
+    {
+      "id": "project-sixteen",
+      "name": "PROJECT SIXTEEN",
+      "menuLabel": "PROJECT SIXTEEN",
+      "category": "EXPERIMENTAL",
+      "order": 16,
+      "published": true,
+      "sections": [
+        {
+          "type": "image",
+          "src": "https://via.placeholder.com/1200x700/777777/FFFFFF?text=PROJECT+SIXTEEN",
+          "alt": "PROJECT SIXTEEN media"
+        },
+        {
+          "type": "text",
+          "text": "PROJECT SIXTEEN DESCRIPTION.",
+          "wrap": "pretty"
+        }
+      ]
+    },
+    {
+      "id": "project-seventeen",
+      "name": "PROJECT SEVENTEEN",
+      "menuLabel": "PROJECT SEVENTEEN",
+      "category": "EXPERIMENTAL",
+      "order": 17,
+      "published": true,
+      "sections": [
+        {
+          "type": "image",
+          "src": "https://via.placeholder.com/1200x700/777777/FFFFFF?text=PROJECT+SEVENTEEN",
+          "alt": "PROJECT SEVENTEEN media"
+        },
+        {
+          "type": "text",
+          "text": "PROJECT SEVENTEEN DESCRIPTION.",
+          "wrap": "pretty"
+        }
+      ]
+    },
+    {
+      "id": "project-eighteen",
+      "name": "PROJECT EIGHTEEN",
+      "menuLabel": "PROJECT EIGHTEEN",
+      "category": "EXPERIMENTAL",
+      "order": 18,
+      "published": true,
+      "sections": [
+        {
+          "type": "image",
+          "src": "https://via.placeholder.com/1200x700/777777/FFFFFF?text=PROJECT+EIGHTEEN",
+          "alt": "PROJECT EIGHTEEN media"
+        },
+        {
+          "type": "text",
+          "text": "PROJECT EIGHTEEN DESCRIPTION.",
+          "wrap": "pretty"
+        }
+      ]
+    },
+    {
+      "id": "project-nineteen",
+      "name": "PROJECT NINETEEN",
+      "menuLabel": "PROJECT NINETEEN",
+      "category": "EXPERIMENTAL",
+      "order": 19,
+      "published": true,
+      "sections": [
+        {
+          "type": "image",
+          "src": "https://via.placeholder.com/1200x700/777777/FFFFFF?text=PROJECT+NINETEEN",
+          "alt": "PROJECT NINETEEN media"
+        },
+        {
+          "type": "text",
+          "text": "PROJECT NINETEEN DESCRIPTION.",
+          "wrap": "pretty"
+        }
+      ]
+    },
+    {
+      "id": "project-twenty",
+      "name": "PROJECT TWENTY",
+      "menuLabel": "PROJECT TWENTY",
+      "category": "EXPERIMENTAL",
+      "order": 20,
+      "published": true,
+      "sections": [
+        {
+          "type": "image",
+          "src": "https://via.placeholder.com/1200x700/777777/FFFFFF?text=PROJECT+TWENTY",
+          "alt": "PROJECT TWENTY media"
+        },
+        {
+          "type": "text",
+          "text": "PROJECT TWENTY DESCRIPTION.",
+          "wrap": "pretty"
+        }
+      ]
+    },
+    {
+      "id": "project-twenty-one",
+      "name": "PROJECT TWENTY-ONE",
+      "menuLabel": "PROJECT TWENTY-ONE",
+      "category": "EXPERIMENTAL",
+      "order": 21,
+      "published": true,
+      "sections": [
+        {
+          "type": "image",
+          "src": "https://via.placeholder.com/1200x700/777777/FFFFFF?text=PROJECT+TWENTY-ONE",
+          "alt": "PROJECT TWENTY-ONE media"
+        },
+        {
+          "type": "text",
+          "text": "PROJECT TWENTY-ONE DESCRIPTION.",
+          "wrap": "pretty"
+        }
+      ]
+    },
+    {
+      "id": "project-twenty-two",
+      "name": "PROJECT TWENTY-TWO",
+      "menuLabel": "PROJECT TWENTY-TWO",
+      "category": "EXPERIMENTAL",
+      "order": 22,
+      "published": true,
+      "sections": [
+        {
+          "type": "image",
+          "src": "https://via.placeholder.com/1200x700/777777/FFFFFF?text=PROJECT+TWENTY-TWO",
+          "alt": "PROJECT TWENTY-TWO media"
+        },
+        {
+          "type": "text",
+          "text": "PROJECT TWENTY-TWO DESCRIPTION.",
+          "wrap": "pretty"
+        }
+      ]
+    },
+    {
+      "id": "project-twenty-three",
+      "name": "PROJECT TWENTY-THREE",
+      "menuLabel": "PROJECT TWENTY-THREE",
+      "category": "EXPERIMENTAL",
+      "order": 23,
+      "published": true,
+      "sections": [
+        {
+          "type": "image",
+          "src": "https://via.placeholder.com/1200x700/777777/FFFFFF?text=PROJECT+TWENTY-THREE",
+          "alt": "PROJECT TWENTY-THREE media"
+        },
+        {
+          "type": "text",
+          "text": "PROJECT TWENTY-THREE DESCRIPTION.",
+          "wrap": "pretty"
+        }
+      ]
+    },
+    {
+      "id": "project-twenty-four",
+      "name": "PROJECT TWENTY-FOUR",
+      "menuLabel": "PROJECT TWENTY-FOUR",
+      "category": "EXPERIMENTAL",
+      "order": 24,
+      "published": true,
+      "sections": [
+        {
+          "type": "image",
+          "src": "https://via.placeholder.com/1200x700/777777/FFFFFF?text=PROJECT+TWENTY-FOUR",
+          "alt": "PROJECT TWENTY-FOUR media"
+        },
+        {
+          "type": "text",
+          "text": "PROJECT TWENTY-FOUR DESCRIPTION.",
+          "wrap": "pretty"
+        }
+      ]
+    },
+    {
+      "id": "project-twenty-five",
+      "name": "PROJECT TWENTY-FIVE",
+      "menuLabel": "PROJECT TWENTY-FIVE",
+      "category": "EXPERIMENTAL",
+      "order": 25,
+      "published": true,
+      "sections": [
+        {
+          "type": "image",
+          "src": "https://via.placeholder.com/1200x700/777777/FFFFFF?text=PROJECT+TWENTY-FIVE",
+          "alt": "PROJECT TWENTY-FIVE media"
+        },
+        {
+          "type": "text",
+          "text": "PROJECT TWENTY-FIVE DESCRIPTION.",
+          "wrap": "pretty"
+        }
+      ]
+    }
+  ]
+}
