@@ -1072,50 +1072,32 @@ preview.querySelector('.close-button').addEventListener('click', () => {
       sendBtn?.addEventListener('click',()=>{saveHistory();drawCaptionToCanvas();const name=document.getElementById('contactName')?.value||'',email=document.getElementById('contactEmail')?.value||'',message=document.getElementById('contactMessage')?.value||'',caption=captionInput?.value||'';const subject=encodeURIComponent(`HARBOURER CONTACT — ${name||'NEW MESSAGE'}`);const body=encodeURIComponent(`Name: ${name}\nEmail: ${email}\n\nMessage:\n${message}\n\nDrawing Caption:\n${caption}\n\nDrawing:\nPlease attach the saved PNG drawing.`);window.location.href=`mailto:danial@dngrgoods.com?subject=${subject}&body=${body}`;setStatus('EMAIL PREPARED')});
       canvas.addEventListener('mousedown',startDrawing);canvas.addEventListener('mousemove',moveDrawing);window.addEventListener('mouseup',stopDrawing);canvas.addEventListener('touchstart',startDrawing,{passive:false});canvas.addEventListener('touchmove',moveDrawing,{passive:false});canvas.addEventListener('touchend',stopDrawing);canvas.addEventListener('touchcancel',stopDrawing);seedCanvas(false);
     };
+    // Centre text reel: intentionally simple, half-line stepped movement.
+    const centreReel = document.getElementById('centreReel');
+    const centreReelTrack = document.getElementById('centreReelTrack');
+    if (centreReel && centreReelTrack) {
+      let reelStep = 0;
+      const originalLineCount = Math.floor(centreReelTrack.children.length / 2);
+      const tickReel = () => {
+        const firstLine = centreReelTrack.firstElementChild;
+        if (!firstLine) return;
+        const lineHeight = firstLine.getBoundingClientRect().height || 24;
+        reelStep += 0.5;
+        centreReelTrack.style.transform = `translateY(${-reelStep * lineHeight}px)`;
+        if (reelStep >= originalLineCount) {
+          setTimeout(() => {
+            centreReelTrack.style.transition = 'none';
+            reelStep = 0;
+            centreReelTrack.style.transform = 'translateY(0)';
+            requestAnimationFrame(() => requestAnimationFrame(() => {
+              centreReelTrack.style.transition = '';
+            }));
+          }, 90);
+        }
+      };
+      setInterval(tickReel, 430);
+    }
+
     setupContactPanel();
 
   
-
-// === CENTRE HALF-LINE TEXT REEL ===
-// Edit only this text when you want to change the centre copy.
-(() => {
-  const reel = document.getElementById('centreTextReel');
-  const track = document.getElementById('centreTextReelTrack');
-  if (!reel || !track) return;
-
-  const CENTRE_REEL_TEXT = `HARBOURER IS A VISUAL SERVICES STUDIO WORKING ACROSS IDENTITY, IMAGE, MOTION, DIGITAL AND PRINT. EXPERIMENTAL BY NATURE, PRACTICAL BY NECESSITY.`;
-  const STEP_DELAY = 360; // milliseconds between half-line steps
-  const STEP_MOVE = 80;   // milliseconds for the little mechanical jump
-  const WORDS_PER_LINE = 6;
-
-  const words = CENTRE_REEL_TEXT.trim().split(/\s+/);
-  const lines = [];
-  for (let i = 0; i < words.length; i += WORDS_PER_LINE) {
-    lines.push(words.slice(i, i + WORDS_PER_LINE).join(' '));
-  }
-  // Duplicate enough lines so the reset happens invisibly.
-  const allLines = [...lines, ...lines, ...lines];
-  track.innerHTML = allLines.map(line => `<div class="centre-text-reel-line">${line}</div>`).join('');
-
-  if (window.matchMedia('(prefers-reduced-motion: reduce)').matches || lines.length < 2) return;
-
-  let halfStep = 0;
-  let timer;
-  const tick = () => {
-    const lineHeight = parseFloat(getComputedStyle(reel).lineHeight);
-    halfStep += 1;
-    track.style.transition = `transform ${STEP_MOVE}ms linear`;
-    track.style.transform = `translateY(${-halfStep * lineHeight / 2}px)`;
-
-    // After one full copy has passed, jump back by exactly one copy.
-    if (halfStep >= lines.length * 2) {
-      window.setTimeout(() => {
-        halfStep = 0;
-        track.style.transition = 'none';
-        track.style.transform = 'translateY(0)';
-      }, STEP_MOVE + 5);
-    }
-    timer = window.setTimeout(tick, STEP_DELAY);
-  };
-  timer = window.setTimeout(tick, STEP_DELAY);
-})();
