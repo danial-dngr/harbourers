@@ -273,11 +273,10 @@
 
 /* PLANETARY FOCUSED sits under the lower-right of HARBOURER. */
 .centre-planetary-logo {
-  position: absolute;
-  width: 53%;
-  height: auto;
-  right: 7%;
-  bottom: -8%;
+   position: absolute;
+  width: 42%;
+  right: 8%;
+  bottom: -16%;
   display: block;
   color: inherit;
 }
