@@ -1,0 +1,140 @@
+/* HARBOURERS V6
+   Isolated centre hero + grid scroll repair.
+   This deliberately does NOT reuse the legacy .branding class. */
+
+/* ---------- Centre logo + stepped text ---------- */
+.centre-hero {
+  position: fixed;
+  top: 58px;
+  left: 50%;
+  width: min(46vw, 610px);
+  transform: translateX(-50%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+  margin: 0;
+  padding: 0;
+  color: var(--text-primary);
+  background: transparent;
+  border: 0;
+  pointer-events: none;
+  z-index: 1;
+}
+
+.centre-hero-logo {
+  display: block;
+  width: 100%;
+  max-width: 575px;
+  height: auto;
+  color: inherit;
+  background: transparent;
+  opacity: 1;
+  filter: none;
+  box-shadow: none;
+  mix-blend-mode: normal;
+  overflow: visible;
+}
+
+/* All visible artwork follows currentColor. Mask rectangles keep their
+   own black/white values so the SVG remains transparent rather than
+   drawing a rectangular background. */
+.centre-hero-logo .cls-2 { mix-blend-mode: normal !important; }
+.centre-hero-logo .cls-3,
+.centre-hero-logo path,
+.centre-hero-logo polygon,
+.centre-hero-logo circle,
+.centre-hero-logo ellipse,
+.centre-hero-logo line,
+.centre-hero-logo polyline { fill: currentColor; }
+.centre-hero-logo mask rect:first-child { fill: #fff !important; }
+.centre-hero-logo mask rect:last-child  { fill: #000 !important; }
+
+.centre-hero-reel {
+  display: block;
+  width: min(48vw, 700px);
+  height: 7.2em;
+  overflow: hidden;
+  color: inherit;
+  background: transparent;
+  text-align: center;
+  font-family: inherit;
+  font-size: clamp(14px, 1.5vw, 24px);
+  line-height: 1.2;
+  text-transform: uppercase;
+  pointer-events: none;
+}
+
+.centre-hero-reel-track {
+  will-change: transform;
+  transition: transform 90ms linear;
+}
+.centre-hero-reel-track > div {
+  height: 1.2em;
+  line-height: 1.2em;
+  white-space: nowrap;
+}
+
+/* ---------- Restore grid viewport scrolling ----------
+   V5 accidentally changed .grid-container to position:relative. */
+.grid-container {
+  position: fixed !important;
+  top: 80px !important;
+  left: 20px !important;
+  right: 20px !important;
+  bottom: calc(20vh + 10px) !important;
+  overflow-x: hidden !important;
+  overflow-y: auto !important;
+  min-height: 0 !important;
+  z-index: 15 !important;
+}
+.grid-container.active {
+  display: grid !important;
+}
+.grid-container .preview {
+  position: relative !important;
+  z-index: auto !important;
+}
+
+/* Keep the actual site UI/projects over the centre artwork without
+   changing their positioning model. */
+.preview { z-index: 20; }
+.content { z-index: 10000; }
+.control-buttons { z-index: 10001; }
+.contact-overlay { z-index: 10002; }
+
+/* ---------- Mobile ---------- */
+@media (max-width: 800px) {
+  .centre-hero {
+    display: flex;
+    top: 64px;
+    left: 50%;
+    width: 90vw;
+    max-width: 520px;
+    transform: translateX(-50%);
+    gap: 8px;
+    color: var(--text-primary);
+    background: transparent;
+    border: 0;
+    z-index: 1;
+  }
+  .centre-hero-logo {
+    display: block;
+    width: min(84vw, 460px);
+    max-width: 460px;
+    height: auto;
+  }
+  .centre-hero-reel {
+    display: block;
+    width: 88vw;
+    max-width: 560px;
+    height: 6em;
+    font-size: clamp(10px, 3vw, 15px);
+  }
+
+  /* Existing mobile stack owns mobile project scrolling; do not force
+     desktop grid behaviour onto it. */
+  .grid-container {
+    display: none !important;
+  }
+}
