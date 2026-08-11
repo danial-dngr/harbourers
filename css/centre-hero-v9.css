@@ -315,10 +315,10 @@
   }
 
   .centre-service-lottie {
-    width: min(48vw, 185px) !important;
-    max-width: 185px !important;
-    margin-top: 2px !important;
-    margin-bottom: 14px !important;
+  width: min(19vw, 220px) !important;
+  max-width: 220px !important;
+  margin-top: 4px !important;
+  margin-bottom: 16px !important;
   }
 
   .control-buttons {
