@@ -1449,3 +1449,44 @@
   .preview-blurb .cms-fullbleed { width:calc(100% + 32px)!important; margin-left:-16px!important; margin-right:-16px!important; }
   .preview-blurb .cms-text { column-count:1; }
 }
+
+
+/* === CENTRE HALF-LINE TEXT REEL ===
+   Intentionally simple: clipped HTML text + stepped translateY. */
+.centre-text-reel {
+  --reel-line: 1.05em;
+  position: fixed;
+  left: 50%;
+  top: 50%;
+  width: min(620px, 58vw);
+  height: calc(var(--reel-line) * 5);
+  transform: translate(-50%, -50%);
+  overflow: hidden;
+  z-index: 2;
+  pointer-events: none;
+  color: var(--text-primary);
+  font-family: inherit;
+  font-size: clamp(14px, 1.35vw, 22px);
+  line-height: var(--reel-line);
+  text-align: center;
+  text-transform: uppercase;
+}
+.centre-text-reel-track {
+  will-change: transform;
+  transform: translateY(0);
+}
+.centre-text-reel-line {
+  height: var(--reel-line);
+  line-height: var(--reel-line);
+  white-space: nowrap;
+}
+@media (max-width: 800px) {
+  .centre-text-reel {
+    width: 76vw;
+    font-size: 12px;
+    top: 48%;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .centre-text-reel-track { transform: none !important; }
+}

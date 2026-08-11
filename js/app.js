@@ -1073,3 +1073,47 @@ preview.querySelector('.close-button').addEventListener('click', () => {
     setupContactPanel();
 
   
+
+// === CENTRE HALF-LINE TEXT REEL ===
+// Edit only this text when you want to change the centre copy.
+(() => {
+  const reel = document.getElementById('centreTextReel');
+  const track = document.getElementById('centreTextReelTrack');
+  if (!reel || !track) return;
+
+  const CENTRE_REEL_TEXT = `HARBOURER IS A VISUAL SERVICES STUDIO WORKING ACROSS IDENTITY, IMAGE, MOTION, DIGITAL AND PRINT. EXPERIMENTAL BY NATURE, PRACTICAL BY NECESSITY.`;
+  const STEP_DELAY = 360; // milliseconds between half-line steps
+  const STEP_MOVE = 80;   // milliseconds for the little mechanical jump
+  const WORDS_PER_LINE = 6;
+
+  const words = CENTRE_REEL_TEXT.trim().split(/\s+/);
+  const lines = [];
+  for (let i = 0; i < words.length; i += WORDS_PER_LINE) {
+    lines.push(words.slice(i, i + WORDS_PER_LINE).join(' '));
+  }
+  // Duplicate enough lines so the reset happens invisibly.
+  const allLines = [...lines, ...lines, ...lines];
+  track.innerHTML = allLines.map(line => `<div class="centre-text-reel-line">${line}</div>`).join('');
+
+  if (window.matchMedia('(prefers-reduced-motion: reduce)').matches || lines.length < 2) return;
+
+  let halfStep = 0;
+  let timer;
+  const tick = () => {
+    const lineHeight = parseFloat(getComputedStyle(reel).lineHeight);
+    halfStep += 1;
+    track.style.transition = `transform ${STEP_MOVE}ms linear`;
+    track.style.transform = `translateY(${-halfStep * lineHeight / 2}px)`;
+
+    // After one full copy has passed, jump back by exactly one copy.
+    if (halfStep >= lines.length * 2) {
+      window.setTimeout(() => {
+        halfStep = 0;
+        track.style.transition = 'none';
+        track.style.transform = 'translateY(0)';
+      }, STEP_MOVE + 5);
+    }
+    timer = window.setTimeout(tick, STEP_DELAY);
+  };
+  timer = window.setTimeout(tick, STEP_DELAY);
+})();
