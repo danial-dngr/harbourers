@@ -1,0 +1,119 @@
+
+/* HARBOURERS centre hero fix v5
+   Kept separate from main.css so theme switching is deterministic. */
+
+.branding {
+  position: fixed !important;
+  top: 72px !important;
+  left: 50% !important;
+  right: auto !important;
+  bottom: auto !important;
+  inset: auto !important;
+  transform: translateX(-50%) !important;
+  width: min(48vw, 620px) !important;
+  height: auto !important;
+  min-height: 0 !important;
+  padding: 0 !important;
+  margin: 0 !important;
+  display: flex !important;
+  flex-direction: column !important;
+  align-items: center !important;
+  justify-content: flex-start !important;
+  gap: 12px !important;
+  background: transparent !important;
+  border: 0 !important;
+  color: #4199e1 !important;
+  z-index: 1 !important;
+  pointer-events: none !important;
+}
+
+body.dark-mode .branding {
+  color: beige !important;
+}
+
+.branding-logo {
+  display: block !important;
+  width: 100% !important;
+  max-width: 575px !important;
+  height: auto !important;
+  color: inherit !important;
+  background: transparent !important;
+  opacity: 1 !important;
+  filter: none !important;
+  box-shadow: none !important;
+  mix-blend-mode: normal !important;
+}
+
+.branding-logo .cls-2 {
+  mix-blend-mode: normal !important;
+}
+
+.branding-logo .cls-3,
+.branding-logo path,
+.branding-logo polygon,
+.branding-logo circle,
+.branding-logo ellipse {
+  fill: currentColor !important;
+}
+
+/* Preserve SVG masking instructions so there is no visible background box. */
+.branding-logo mask rect:first-child { fill: #fff !important; }
+.branding-logo mask rect:last-child  { fill: #000 !important; }
+
+.centre-reel {
+  display: block !important;
+  width: min(46vw, 700px) !important;
+  height: 7.2em !important;
+  overflow: hidden !important;
+  color: inherit !important;
+  background: transparent !important;
+  text-align: center !important;
+  font-size: clamp(14px, 1.5vw, 24px) !important;
+  line-height: 1.2 !important;
+  pointer-events: none !important;
+}
+
+.centre-reel-track > div {
+  height: 1.2em !important;
+  line-height: 1.2em !important;
+  white-space: nowrap !important;
+}
+
+/* Everything interactive remains above the centre artwork. */
+.preview,
+.grid-container,
+.mobile-stack-container,
+.content,
+.control-buttons,
+.contact-overlay {
+  z-index: 20;
+}
+.control-buttons { z-index: 10001 !important; }
+.content { z-index: 10000 !important; }
+
+/* Explicit mobile version: logo + reel remain visible. */
+@media (max-width: 800px) {
+  .branding {
+    top: 66px !important;
+    width: 88vw !important;
+    max-width: 520px !important;
+    display: flex !important;
+    background: transparent !important;
+    border: 0 !important;
+  }
+
+  .branding-logo {
+    display: block !important;
+    width: 82vw !important;
+    max-width: 460px !important;
+    height: auto !important;
+  }
+
+  .centre-reel {
+    display: block !important;
+    width: 88vw !important;
+    max-width: 560px !important;
+    height: 6em !important;
+    font-size: clamp(10px, 3vw, 15px) !important;
+  }
+}
