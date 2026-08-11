@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>HARBOURERS</title>
   <link rel="stylesheet" href="css/main.css?v=7">
-  <link rel="stylesheet" href="css/centre-hero-v9.css?v=9">
+  <link rel="stylesheet" href="css/centre-hero-v10.css?v=10">
   <script src="https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js"></script>
 </head>
 <body>
@@ -142,15 +142,25 @@
       </svg>
     </div>
 
-    <lottie-player
-      id="centreServiceLottie"
-      class="centre-service-lottie"
-      src="assets/lottie/visual-services-word-spin-blue.json"
-      background="transparent"
-      speed="1"
-      autoplay
-      loop>
-    </lottie-player>
+    <div class="centre-service-lottie-wrap" aria-hidden="true">
+      <lottie-player
+        class="centre-service-lottie centre-service-lottie-light"
+        src="assets/lottie/visual-services-word-spin-blue.json"
+        background="transparent"
+        speed="1"
+        autoplay
+        loop>
+      </lottie-player>
+
+      <lottie-player
+        class="centre-service-lottie centre-service-lottie-dark"
+        src="assets/lottie/visual-services-word-spin-cream.json"
+        background="transparent"
+        speed="1"
+        autoplay
+        loop>
+      </lottie-player>
+    </div>
 
     <div class="centre-hero-reel" id="centreReel">
       <div class="centre-hero-reel-track" id="centreReelTrack">

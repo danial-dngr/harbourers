@@ -328,3 +328,102 @@
     right: 10px !important;
   }
 }
+
+
+/* === V10 — tuned proportions from the preferred desktop/mobile reference === */
+
+/* Whole centre group: keep the same centred behaviour, but tighten the scale. */
+.centre-hero {
+  top: 52px !important;
+  gap: 0 !important;
+}
+
+/* HARBOURER is now deliberately compact rather than filling the viewport. */
+.centre-brand-lockup {
+  width: min(31vw, 340px) !important;
+  max-width: 340px !important;
+  margin: 0 0 14px 0 !important;
+}
+
+/* PLANETARY FOCUSED: smaller and tucked into the lower-right, clear of letters. */
+.centre-planetary-logo {
+  width: 46% !important;
+  right: 4% !important;
+  bottom: -14% !important;
+}
+
+/* New Visual Services animation: compact, with proper breathing room. */
+.centre-service-lottie-wrap {
+  position: relative;
+  width: 132px;
+  height: 104px;
+  margin: 10px 0 18px 0;
+  pointer-events: none;
+}
+
+.centre-service-lottie {
+  position: absolute !important;
+  inset: 0 !important;
+  width: 132px !important;
+  max-width: 132px !important;
+  height: 104px !important;
+  margin: 0 !important;
+  display: block !important;
+  background: transparent !important;
+}
+
+/* Guaranteed theme switching: no JS reload/caching dependency. */
+.centre-service-lottie-light { display: block !important; }
+.centre-service-lottie-dark  { display: none !important; }
+
+body.dark-mode .centre-service-lottie-light { display: none !important; }
+body.dark-mode .centre-service-lottie-dark  { display: block !important; }
+
+/* Preserve the animated blurb spacing. */
+.centre-hero-reel {
+  margin-top: 0 !important;
+}
+
+/* Restore a small, consistent inset around the top controls. */
+.control-buttons {
+  top: 12px !important;
+  left: 12px !important;
+  right: 12px !important;
+}
+
+/* Mobile proportions match the supplied phone reference more closely. */
+@media (max-width: 800px) {
+  .centre-hero {
+    top: 70px !important;
+  }
+
+  .centre-brand-lockup {
+    width: min(72vw, 220px) !important;
+    max-width: 220px !important;
+    margin-bottom: 15px !important;
+  }
+
+  .centre-planetary-logo {
+    width: 55% !important;
+    right: 2% !important;
+    bottom: -18% !important;
+  }
+
+  .centre-service-lottie-wrap {
+    width: 122px;
+    height: 96px;
+    margin: 8px 0 18px 0;
+  }
+
+  .centre-service-lottie {
+    width: 122px !important;
+    max-width: 122px !important;
+    height: 96px !important;
+  }
+
+  .control-buttons {
+    top: 10px !important;
+    left: 10px !important;
+    right: 10px !important;
+  }
+}
