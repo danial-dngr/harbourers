@@ -1291,7 +1291,7 @@
     /* === Final repair: branding + drawing === */
     .branding{position:fixed;top:20px;left:20px;right:20px;z-index:100;color:var(--text-primary)!important;display:flex;align-items:flex-start;justify-content:center;gap:16px;pointer-events:auto;}
     .branding-logo{height:clamp(64px,8vw,115px);width:auto;max-width:min(56vw,700px);display:block;color:var(--text-primary);flex:0 1 auto;}
-    .branding-logo path,.branding-logo polygon,.branding-logo rect,.branding-logo circle,.branding-logo ellipse,.branding-logo line,.branding-logo polyline{fill:currentColor;}
+    .branding-logo path,.branding-logo polygon,.branding-logo circle,.branding-logo ellipse,.branding-logo line,.branding-logo polyline{fill:currentColor;}
     .control-buttons{position:absolute;top:0;left:0;right:0;display:block;margin-left:0;flex:0 0 auto;pointer-events:none;}
     .control-buttons .control-button{position:absolute;pointer-events:auto;}
     #invertBtn{left:0;}
@@ -1576,5 +1576,93 @@
     top: 0;
     margin: 0 0 14px 0;
     padding: 0 0 12px 0;
+  }
+}
+
+
+/* =========================================================
+   CENTRE HERO THEME + MOBILE FIX
+   Theme-aware inline SVG, transparent artwork, higher placement.
+   ========================================================= */
+.branding {
+  /* Use the site's normal foreground variable so both the SVG and reel
+     switch automatically: blue in light mode, beige in dark mode. */
+  color: var(--text-primary) !important;
+  inset: 6vh 0 20vh 0 !important;
+  justify-content: flex-start !important;
+  background: transparent !important;
+  border: 0 !important;
+  z-index: 2 !important;
+  pointer-events: none !important;
+}
+
+/* Inline SVG is intentionally transparent; only its vector artwork draws. */
+.branding-logo {
+  color: inherit !important;
+  background: transparent !important;
+  mix-blend-mode: normal !important;
+  opacity: 1 !important;
+  filter: none !important;
+  box-shadow: none !important;
+  flex: 0 0 auto !important;
+}
+.branding-logo .cls-2 { mix-blend-mode: normal !important; }
+.branding-logo .cls-3 { fill: currentColor !important; }
+.branding-logo path,
+.branding-logo polygon,
+.branding-logo circle,
+.branding-logo ellipse { fill: currentColor; }
+/* These two rectangles are mask instructions, not visible background art. */
+.branding-logo mask rect:first-child { fill: #fff !important; }
+.branding-logo mask rect:last-child { fill: #000 !important; }
+
+.centre-reel {
+  color: inherit !important;
+  background: transparent !important;
+  flex: 0 0 auto !important;
+}
+
+/* Keep every interactive surface above the centre artwork. */
+.grid-container,
+.mobile-stack-container,
+.preview,
+.content,
+.control-buttons,
+.contact-overlay { position: relative; }
+.control-buttons { position: fixed !important; }
+.content { position: fixed !important; }
+
+@media (max-width: 800px) {
+  /* The central artwork remains present on phones rather than being replaced
+     by the old mobile header treatment. */
+  .branding {
+    display: flex !important;
+    inset: 68px 0 20vh 0 !important;
+    justify-content: flex-start !important;
+    align-items: center !important;
+    gap: 10px !important;
+    color: var(--text-primary) !important;
+    background: transparent !important;
+    border: 0 !important;
+    z-index: 2 !important;
+  }
+  .branding-logo {
+    display: block !important;
+    width: min(84vw, 460px) !important;
+    max-width: 460px !important;
+    height: auto !important;
+  }
+  .centre-reel {
+    display: block !important;
+    width: 88vw !important;
+    max-width: 560px !important;
+    height: 6em !important;
+    font-size: clamp(10px, 3vw, 15px) !important;
+    line-height: 1.2 !important;
+  }
+  .centre-reel-track > div {
+    height: 1.2em !important;
+    line-height: 1.2em !important;
+    white-space: nowrap !important;
   }
 }
