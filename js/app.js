@@ -840,8 +840,10 @@
 
       // Title above media (as requested)
       preview.innerHTML = `
-        <button class="close-button" title="Close"></button>
-        <div class="preview-title">${project}</div>
+        <div class="preview-header">
+          <div class="preview-title">${project}</div>
+          <button class="close-button" title="Close"></button>
+        </div>
         <div class="preview-image-wrapper"></div>
         <p class="preview-blurb">${data.blurb}</p>
       `;
