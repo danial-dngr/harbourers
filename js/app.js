@@ -1072,7 +1072,27 @@ preview.querySelector('.close-button').addEventListener('click', () => {
       sendBtn?.addEventListener('click',()=>{saveHistory();drawCaptionToCanvas();const name=document.getElementById('contactName')?.value||'',email=document.getElementById('contactEmail')?.value||'',message=document.getElementById('contactMessage')?.value||'',caption=captionInput?.value||'';const subject=encodeURIComponent(`HARBOURER CONTACT — ${name||'NEW MESSAGE'}`);const body=encodeURIComponent(`Name: ${name}\nEmail: ${email}\n\nMessage:\n${message}\n\nDrawing Caption:\n${caption}\n\nDrawing:\nPlease attach the saved PNG drawing.`);window.location.href=`mailto:danial@dngrgoods.com?subject=${subject}&body=${body}`;setStatus('EMAIL PREPARED')});
       canvas.addEventListener('mousedown',startDrawing);canvas.addEventListener('mousemove',moveDrawing);window.addEventListener('mouseup',stopDrawing);canvas.addEventListener('touchstart',startDrawing,{passive:false});canvas.addEventListener('touchmove',moveDrawing,{passive:false});canvas.addEventListener('touchend',stopDrawing);canvas.addEventListener('touchcancel',stopDrawing);seedCanvas(false);
     };
-    // Centre text reel: intentionally simple, half-line stepped movement.
+
+    // Centre Visual Services Lottie follows light/dark theme.
+    const centreServiceLottie = document.getElementById('centreServiceLottie');
+    const syncCentreServiceLottieTheme = () => {
+      if (!centreServiceLottie) return;
+      const nextSrc = document.body.classList.contains('dark-mode')
+        ? 'assets/lottie/visual-services-word-spin-cream.json'
+        : 'assets/lottie/visual-services-word-spin-blue.json';
+      if (centreServiceLottie.getAttribute('src') !== nextSrc) {
+        centreServiceLottie.setAttribute('src', nextSrc);
+      }
+    };
+    syncCentreServiceLottieTheme();
+    if (centreServiceLottie) {
+      new MutationObserver(syncCentreServiceLottieTheme).observe(document.body, {
+        attributes: true,
+        attributeFilter: ['class']
+      });
+    }
+
+    // Centre text reel: intentionally simple half-line steps.
     const centreReel = document.getElementById('centreReel');
     const centreReelTrack = document.getElementById('centreReelTrack');
     if (centreReel && centreReelTrack) {

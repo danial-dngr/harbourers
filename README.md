@@ -64,3 +64,7 @@ The existing project window engine remains in place:
 - saved positions
 - mobile stack
 - COLLAB drawing/contact
+
+
+## V7 mobile restore
+This build starts from the user's original working repository and keeps its original mobile stack, project scrolling, project-list navigation, grid/free modes and COLLAB behaviour. Only the isolated centre hero/reel and sticky project header were added.
